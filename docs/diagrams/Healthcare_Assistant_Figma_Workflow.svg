@@ -1,0 +1,297 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1200" width="100%" height="100%" style="background-color: #0F172A; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#1D4ED8"/>
+    </linearGradient>
+    <linearGradient id="emeraldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10B981"/>
+      <stop offset="100%" stop-color="#047857"/>
+    </linearGradient>
+    <linearGradient id="amberGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#B45309"/>
+    </linearGradient>
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8B5CF6"/>
+      <stop offset="100%" stop-color="#6D28D9"/>
+    </linearGradient>
+    <linearGradient id="slateGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#334155"/>
+      <stop offset="100%" stop-color="#1E293B"/>
+    </linearGradient>
+
+    <!-- Drop Shadows -->
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000000" flood-opacity="0.4"/>
+    </filter>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+
+    <!-- Markers -->
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#38BDF8"/>
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#34D399"/>
+    </marker>
+    <marker id="arrow-amber" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#FBBF24"/>
+    </marker>
+    <marker id="arrow-purple" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#C084FC"/>
+    </marker>
+  </defs>
+
+  <!-- Title Header -->
+  <g transform="translate(60, 40)">
+    <rect x="0" y="0" width="1480" height="70" rx="12" fill="#1E293B" stroke="#334155" stroke-width="1.5" />
+    <text x="30" y="44" fill="#38BDF8" font-size="22" font-weight="700">🏥 AI-POWERED RURAL HEALTHCARE ASSISTANT — END-TO-END WORKFLOW &amp; FIGMA BLUEPRINT</text>
+    <text x="1140" y="44" fill="#94A3B8" font-size="14" font-weight="500">Live Role-Based System Architecture</text>
+  </g>
+
+  <!-- ================= SECTION 1: PUBLIC & AUTH ================= -->
+  <g transform="translate(60, 140)">
+    <!-- Lane Container -->
+    <rect x="0" y="0" width="280" height="880" rx="16" fill="#1E293B" fill-opacity="0.4" stroke="#3B82F6" stroke-width="1.5" stroke-dasharray="6,6" />
+    <rect x="15" y="15" width="250" height="36" rx="8" fill="url(#blueGrad)" />
+    <text x="35" y="39" fill="#FFFFFF" font-size="14" font-weight="700">1. PUBLIC &amp; AUTH GATEWAY</text>
+
+    <!-- Landing Page Node -->
+    <g transform="translate(20, 75)" filter="url(#shadow)">
+      <rect x="0" y="0" width="240" height="150" rx="10" fill="#1E293B" stroke="#3B82F6" stroke-width="1.5" />
+      <text x="15" y="28" fill="#60A5FA" font-size="14" font-weight="700">🏠 Landing Page (/)</text>
+      <line x1="15" y1="38" x2="225" y2="38" stroke="#334155" stroke-width="1"/>
+      <text x="15" y="60" fill="#CBD5E1" font-size="12">• Multilingual Hero Section</text>
+      <text x="15" y="80" fill="#CBD5E1" font-size="12">• Language Selector (Voice/Text)</text>
+      <text x="15" y="100" fill="#CBD5E1" font-size="12">• "How It Works" Flow</text>
+      <text x="15" y="125" fill="#38BDF8" font-size="11" font-weight="600">Action: [Get Started] / [Login]</text>
+    </g>
+
+    <!-- Login & Register Node -->
+    <g transform="translate(20, 270)" filter="url(#shadow)">
+      <rect x="0" y="0" width="240" height="175" rx="10" fill="#1E293B" stroke="#3B82F6" stroke-width="1.5" />
+      <text x="15" y="28" fill="#60A5FA" font-size="14" font-weight="700">🔐 Auth &amp; Role Gate (/login)</text>
+      <line x1="15" y1="38" x2="225" y2="38" stroke="#334155" stroke-width="1"/>
+      <text x="15" y="60" fill="#CBD5E1" font-size="12">• Phone / ABHA / Email OTP</text>
+      <text x="15" y="80" fill="#CBD5E1" font-size="12">• Role Guard Classifier:</text>
+      <text x="25" y="100" fill="#34D399" font-size="11">➔ Patient Portal</text>
+      <text x="25" y="118" fill="#FBBF24" font-size="11">➔ ASHA Worker Portal</text>
+      <text x="25" y="136" fill="#C084FC" font-size="11">➔ Doctor / PHC Portal</text>
+      <text x="15" y="160" fill="#94A3B8" font-size="10">Auto-routes to dedicated layouts</text>
+    </g>
+
+    <!-- Public Emergency Card Node -->
+    <g transform="translate(20, 490)" filter="url(#shadow)">
+      <rect x="0" y="0" width="240" height="135" rx="10" fill="#1E293B" stroke="#EF4444" stroke-width="1.5" />
+      <text x="15" y="28" fill="#F87171" font-size="14" font-weight="700">🚨 Public Emergency Card</text>
+      <line x1="15" y1="38" x2="225" y2="38" stroke="#334155" stroke-width="1"/>
+      <text x="15" y="60" fill="#CBD5E1" font-size="12">• Public Route: /emergency-card/*</text>
+      <text x="15" y="80" fill="#CBD5E1" font-size="12">• Zero Login Required</text>
+      <text x="15" y="100" fill="#CBD5E1" font-size="12">• Scannable QR for Responders</text>
+      <text x="15" y="120" fill="#FCA5A5" font-size="11">• Allergies, Blood Group, SOS Call</text>
+    </g>
+  </g>
+
+  <!-- ================= SECTION 2: ASHA FIELD WORKER HUB ================= -->
+  <g transform="translate(370, 140)">
+    <rect x="0" y="0" width="370" height="880" rx="16" fill="#1E293B" fill-opacity="0.4" stroke="#F59E0B" stroke-width="1.5" stroke-dasharray="6,6" />
+    <rect x="15" y="15" width="340" height="36" rx="8" fill="url(#amberGrad)" />
+    <text x="35" y="39" fill="#FFFFFF" font-size="14" font-weight="700">2. ASHA / HEALTHCARE WORKER PORTAL</text>
+
+    <!-- ASHA Dashboard Node -->
+    <g transform="translate(20, 75)" filter="url(#shadow)">
+      <rect x="0" y="0" width="330" height="155" rx="10" fill="#1E293B" stroke="#F59E0B" stroke-width="1.5" />
+      <text x="15" y="28" fill="#FBBF24" font-size="14" font-weight="700">🩺 ASHA Field Dashboard (/app/asha)</text>
+      <line x1="15" y1="38" x2="315" y2="38" stroke="#334155" stroke-width="1"/>
+      <text x="15" y="60" fill="#CBD5E1" font-size="12">• Village Offline Cache Status (IndexedDB)</text>
+      <text x="15" y="80" fill="#CBD5E1" font-size="12">• High-Risk Alert Metric Cards (🔴 3 Pending)</text>
+      <text x="15" y="100" fill="#CBD5E1" font-size="12">• Quick Actions: [New ABHA] [Log Vitals] [Route]</text>
+      <text x="15" y="122" fill="#CBD5E1" font-size="12">• Today's Field Visit Schedule</text>
+      <text x="15" y="142" fill="#FDE68A" font-size="11">Sticky: Zero-loss offline storage sync</text>
+    </g>
+
+    <!-- Village Registry Node -->
+    <g transform="translate(20, 260)" filter="url(#shadow)">
+      <rect x="0" y="0" width="330" height="165" rx="10" fill="#1E293B" stroke="#F59E0B" stroke-width="1.5" />
+      <text x="15" y="28" fill="#FBBF24" font-size="14" font-weight="700">👥 Village Registry (/app/asha/patients)</text>
+      <line x1="15" y1="38" x2="315" y2="38" stroke="#334155" stroke-width="1"/>
+      <text x="15" y="58" fill="#CBD5E1" font-size="12">• Patient Household Roster &amp; Health Cards</text>
+      <text x="15" y="78" fill="#CBD5E1" font-size="12">• Dynamic Risk Badging (🔴 High / 🟢 Stable)</text>
+      <text x="15" y="98" fill="#CBD5E1" font-size="12">• Filter by Chronic Disease / Pregnancy / Child</text>
+      <text x="15" y="125" fill="#38BDF8" font-size="11" font-weight="600">Triggers Modals on Click:</text>
+      <text x="15" y="145" fill="#94A3B8" font-size="10">➔ ABHA Reg Modal | Record Vitals | Route Map</text>
+    </g>
+
+    <!-- ASHA Modals Grid -->
+    <g transform="translate(20, 455)" filter="url(#shadow)">
+      <rect x="0" y="0" width="330" height="120" rx="8" fill="#0F172A" stroke="#F59E0B" stroke-width="1" />
+      <text x="12" y="22" fill="#FBBF24" font-size="12" font-weight="700">🪪 [AbhaRegistrationModal]</text>
+      <text x="12" y="42" fill="#94A3B8" font-size="11">• Aadhaar OTP verification on doorstep</text>
+      <text x="12" y="60" fill="#94A3B8" font-size="11">• Generates official 14-digit ABHA Card</text>
+      <text x="12" y="80" fill="#34D399" font-size="11" font-weight="600">✓ Auto-adds patient into Village Registry</text>
+    </g>
+
+    <g transform="translate(20, 590)" filter="url(#shadow)">
+      <rect x="0" y="0" width="330" height="120" rx="8" fill="#0F172A" stroke="#F59E0B" stroke-width="1" />
+      <text x="12" y="22" fill="#FBBF24" font-size="12" font-weight="700">💓 [RecordVitalsModal]</text>
+      <text x="12" y="42" fill="#94A3B8" font-size="11">• BP, Sugar, SpO2, Temperature, Heart Rate</text>
+      <text x="12" y="60" fill="#94A3B8" font-size="11">• Voice Memo note for non-typing ASHA</text>
+      <text x="12" y="80" fill="#EF4444" font-size="11" font-weight="600">⚡ Auto-flags High-Risk if BP &gt; 140/90</text>
+    </g>
+
+    <g transform="translate(20, 725)" filter="url(#shadow)">
+      <rect x="0" y="0" width="330" height="125" rx="8" fill="#0F172A" stroke="#F59E0B" stroke-width="1" />
+      <text x="12" y="22" fill="#FBBF24" font-size="12" font-weight="700">🗺️ [VisitRouteMapModal] &amp; Referrals</text>
+      <text x="12" y="42" fill="#94A3B8" font-size="11">• GPS Village path optimization</text>
+      <text x="12" y="60" fill="#94A3B8" font-size="11">• CreateReferralModal (Escalates to Doctor)</text>
+      <text x="12" y="80" fill="#94A3B8" font-size="11">• DoctorTeleChatModal (Live PHC coordination)</text>
+      <text x="12" y="105" fill="#C084FC" font-size="11" font-weight="600">➔ Pushes live case packet to Doctor</text>
+    </g>
+  </g>
+
+  <!-- ================= SECTION 3: PATIENT PORTAL ================= -->
+  <g transform="translate(770, 140)">
+    <rect x="0" y="0" width="370" height="880" rx="16" fill="#1E293B" fill-opacity="0.4" stroke="#10B981" stroke-width="1.5" stroke-dasharray="6,6" />
+    <rect x="15" y="15" width="340" height="36" rx="8" fill="url(#emeraldGrad)" />
+    <text x="35" y="39" fill="#FFFFFF" font-size="14" font-weight="700">3. PATIENT EMPOWERMENT PORTAL</text>
+
+    <!-- Patient Dashboard Node -->
+    <g transform="translate(20, 75)" filter="url(#shadow)">
+      <rect x="0" y="0" width="330" height="175" rx="10" fill="#1E293B" stroke="#10B981" stroke-width="1.5" />
+      <text x="15" y="28" fill="#34D399" font-size="14" font-weight="700">📱 Patient Dashboard (/app/patient)</text>
+      <line x1="15" y1="38" x2="315" y2="38" stroke="#334155" stroke-width="1"/>
+      <text x="15" y="60" fill="#CBD5E1" font-size="12">• Zero-Literacy High-Contrast Visual UI</text>
+      <text x="15" y="80" fill="#CBD5E1" font-size="12">• Large Voice Floating Assistant Button (Mic)</text>
+      <text x="15" y="100" fill="#CBD5E1" font-size="12">• Today's Dosage Schedule (Morning/Night)</text>
+      <text x="15" y="120" fill="#CBD5E1" font-size="12">• Scan Prescription &amp; Vault access</text>
+      <text x="15" y="145" fill="#6EE7B7" font-size="11">Audio Readout on every card</text>
+    </g>
+
+    <!-- SwasthyaMitr Voice Assistant -->
+    <g transform="translate(20, 280)" filter="url(#shadow)">
+      <rect x="0" y="0" width="330" height="150" rx="10" fill="#1E293B" stroke="#10B981" stroke-width="1.5" />
+      <text x="15" y="28" fill="#34D399" font-size="14" font-weight="700">🎙️ SwasthyaMitr AI Voice Assistant</text>
+      <line x1="15" y1="38" x2="315" y2="38" stroke="#334155" stroke-width="1"/>
+      <text x="15" y="58" fill="#CBD5E1" font-size="12">• Speech-to-Speech in Regional Dialects</text>
+      <text x="15" y="78" fill="#CBD5E1" font-size="12">• Hindi, Tamil, Telugu, Marathi, English</text>
+      <text x="15" y="98" fill="#CBD5E1" font-size="12">• Explains dosages, side-effects &amp; diet</text>
+      <text x="15" y="125" fill="#38BDF8" font-size="11" font-weight="600">✓ Hands-free conversational interface</text>
+    </g>
+
+    <!-- Prescription OCR & Vault -->
+    <g transform="translate(20, 455)" filter="url(#shadow)">
+      <rect x="0" y="0" width="330" height="175" rx="10" fill="#1E293B" stroke="#10B981" stroke-width="1.5" />
+      <text x="15" y="28" fill="#34D399" font-size="14" font-weight="700">📄 Prescription OCR &amp; Medical Vault</text>
+      <line x1="15" y1="38" x2="315" y2="38" stroke="#334155" stroke-width="1"/>
+      <text x="15" y="58" fill="#CBD5E1" font-size="12">• Scans handwritten doctor prescriptions</text>
+      <text x="15" y="78" fill="#CBD5E1" font-size="12">• Gemini 1.5 &amp; Groq Llama Vision pipeline</text>
+      <text x="15" y="98" fill="#CBD5E1" font-size="12">• Auto-populates Medication Reminders</text>
+      <text x="15" y="118" fill="#CBD5E1" font-size="12">• ABDM Health Record Vault (/app/patient/vault)</text>
+      <text x="15" y="145" fill="#FBBF24" font-size="11">➔ Sets WhatsApp / SMS dosage alerts</text>
+    </g>
+
+    <!-- My Health Map -->
+    <g transform="translate(20, 655)" filter="url(#shadow)">
+      <rect x="0" y="0" width="330" height="150" rx="10" fill="#1E293B" stroke="#10B981" stroke-width="1.5" />
+      <text x="15" y="28" fill="#34D399" font-size="14" font-weight="700">🗺️ My Health Map &amp; Reminders</text>
+      <line x1="15" y1="38" x2="315" y2="38" stroke="#334155" stroke-width="1"/>
+      <text x="15" y="58" fill="#CBD5E1" font-size="12">• GPS locator for nearest PHC &amp; Jan Aushadhi</text>
+      <text x="15" y="78" fill="#CBD5E1" font-size="12">• Daily dose confirmation checkboxes</text>
+      <text x="15" y="98" fill="#CBD5E1" font-size="12">• Caregiver sync (Family tracking)</text>
+      <text x="15" y="125" fill="#34D399" font-size="11" font-weight="600">✓ Ensures 100% medical adherence</text>
+    </g>
+  </g>
+
+  <!-- ================= SECTION 4: DOCTOR PORTAL ================= -->
+  <g transform="translate(1170, 140)">
+    <rect x="0" y="0" width="370" height="880" rx="16" fill="#1E293B" fill-opacity="0.4" stroke="#8B5CF6" stroke-width="1.5" stroke-dasharray="6,6" />
+    <rect x="15" y="15" width="340" height="36" rx="8" fill="url(#purpleGrad)" />
+    <text x="35" y="39" fill="#FFFFFF" font-size="14" font-weight="700">4. DOCTOR &amp; PHC TELE-TRIAGE HUB</text>
+
+    <!-- Doctor Dashboard Node -->
+    <g transform="translate(20, 75)" filter="url(#shadow)">
+      <rect x="0" y="0" width="330" height="175" rx="10" fill="#1E293B" stroke="#8B5CF6" stroke-width="1.5" />
+      <text x="15" y="28" fill="#C084FC" font-size="14" font-weight="700">👨‍⚕️ Doctor Dashboard (/app/doctor)</text>
+      <line x1="15" y1="38" x2="315" y2="38" stroke="#334155" stroke-width="1"/>
+      <text x="15" y="58" fill="#CBD5E1" font-size="12">• Incoming Tele-Triage Patient Queue</text>
+      <text x="15" y="78" fill="#CBD5E1" font-size="12">• Priority Sorted: P1 (Critical) ➔ P3 (Routine)</text>
+      <text x="15" y="98" fill="#CBD5E1" font-size="12">• Review ASHA Field Vitals + Audio Memos</text>
+      <text x="15" y="118" fill="#CBD5E1" font-size="12">• AI Clinical Summary of symptoms</text>
+      <text x="15" y="145" fill="#E9D5FF" font-size="11">Fast-tracks rural critical referrals</text>
+    </g>
+
+    <!-- Digital Prescription & Consultation -->
+    <g transform="translate(20, 280)" filter="url(#shadow)">
+      <rect x="0" y="0" width="330" height="185" rx="10" fill="#1E293B" stroke="#8B5CF6" stroke-width="1.5" />
+      <text x="15" y="28" fill="#C084FC" font-size="14" font-weight="700">💊 Digital Rx &amp; Consultation</text>
+      <line x1="15" y1="38" x2="315" y2="38" stroke="#334155" stroke-width="1"/>
+      <text x="15" y="58" fill="#CBD5E1" font-size="12">• Fast Medicine Autocomplete</text>
+      <text x="15" y="78" fill="#CBD5E1" font-size="12">• Dosage &amp; Frequency Configuration</text>
+      <text x="15" y="98" fill="#CBD5E1" font-size="12">• Digital Signature &amp; ABHA Push</text>
+      <text x="15" y="125" fill="#34D399" font-size="11" font-weight="600">➔ Syncs instant Rx to Patient Portal</text>
+      <text x="15" y="145" fill="#FBBF24" font-size="11" font-weight="600">➔ Sends follow-up task to ASHA Worker</text>
+    </g>
+
+    <!-- Caregiver & Family Bridge -->
+    <g transform="translate(20, 495)" filter="url(#shadow)">
+      <rect x="0" y="0" width="330" height="150" rx="10" fill="#1E293B" stroke="#8B5CF6" stroke-width="1.5" />
+      <text x="15" y="28" fill="#C084FC" font-size="14" font-weight="700">🤝 Caregiver Portal (/app/caregiver)</text>
+      <line x1="15" y1="38" x2="315" y2="38" stroke="#334155" stroke-width="1"/>
+      <text x="15" y="58" fill="#CBD5E1" font-size="12">• Family Member Adherence Monitoring</text>
+      <text x="15" y="78" fill="#CBD5E1" font-size="12">• Missed Dose Push Notifications</text>
+      <text x="15" y="98" fill="#CBD5E1" font-size="12">• ASHA Worker Direct Contact link</text>
+      <text x="15" y="125" fill="#A78BFA" font-size="11">Elderly &amp; illiterate patient care</text>
+    </g>
+  </g>
+
+  <!-- ================= BOTTOM BAR: AI & OFFLINE ENGINE ================= -->
+  <g transform="translate(60, 1045)">
+    <rect x="0" y="0" width="1480" height="115" rx="14" fill="url(#slateGrad)" stroke="#475569" stroke-width="1.5" />
+    <text x="30" y="32" fill="#38BDF8" font-size="15" font-weight="700">⚡ BACKEND AI ENGINE, OFFLINE SYNC &amp; GOVERNMENT HEALTH PROTOCOLS</text>
+    
+    <g transform="translate(30, 48)">
+      <rect x="0" y="0" width="330" height="50" rx="8" fill="#0F172A" stroke="#334155" />
+      <text x="15" y="22" fill="#FBBF24" font-size="12" font-weight="700">1. Gemini &amp; Groq Vision OCR</text>
+      <text x="15" y="38" fill="#94A3B8" font-size="10">Handwritten Rx digitization &amp; drug validation</text>
+    </g>
+
+    <g transform="translate(385, 48)">
+      <rect x="0" y="0" width="330" height="50" rx="8" fill="#0F172A" stroke="#334155" />
+      <text x="15" y="22" fill="#34D399" font-size="12" font-weight="700">2. Multilingual Speech Pipeline</text>
+      <text x="15" y="38" fill="#94A3B8" font-size="10">Bhashini &amp; OpenAI Whisper STT/TTS in Indian dialects</text>
+    </g>
+
+    <g transform="translate(740, 48)">
+      <rect x="0" y="0" width="330" height="50" rx="8" fill="#0F172A" stroke="#334155" />
+      <text x="15" y="22" fill="#60A5FA" font-size="12" font-weight="700">3. ABDM / ABHA M1 &amp; M2 API</text>
+      <text x="15" y="38" fill="#94A3B8" font-size="10">Government health ID registration &amp; FHIR records</text>
+    </g>
+
+    <g transform="translate(1095, 48)">
+      <rect x="0" y="0" width="355" height="50" rx="8" fill="#0F172A" stroke="#334155" />
+      <text x="15" y="22" fill="#C084FC" font-size="12" font-weight="700">4. IndexedDB Offline First Cache</text>
+      <text x="15" y="38" fill="#94A3B8" font-size="10">Zero-loss background sync for remote rural field visits</text>
+    </g>
+  </g>
+
+  <!-- ================= CONNECTOR ARROWS ================= -->
+  <!-- Auth to ASHA -->
+  <path d="M 280 430 L 370 230" fill="none" stroke="#FBBF24" stroke-width="2.5" marker-end="url(#arrow-amber)" />
+  
+  <!-- Auth to Patient -->
+  <path d="M 280 440 L 770 230" fill="none" stroke="#34D399" stroke-width="2.5" marker-end="url(#arrow-green)" />
+
+  <!-- Auth to Doctor -->
+  <path d="M 280 450 C 400 500, 950 50, 1170 230" fill="none" stroke="#C084FC" stroke-width="2.5" marker-end="url(#arrow-purple)" />
+
+  <!-- ASHA Referral to Doctor Queue -->
+  <path d="M 720 780 C 950 820, 1100 350, 1170 250" fill="none" stroke="#FBBF24" stroke-width="2.5" stroke-dasharray="5,5" marker-end="url(#arrow-amber)" />
+
+  <!-- Doctor Prescribe to Patient Vault -->
+  <path d="M 1170 370 C 1140 420, 1120 480, 1100 520" fill="none" stroke="#C084FC" stroke-width="2.5" marker-end="url(#arrow-purple)" />
+
+</svg>

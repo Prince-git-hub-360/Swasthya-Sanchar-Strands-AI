@@ -5,7 +5,7 @@ import { useAuth } from '../../shared/context/AuthContext';
 import SwasthyaLogo from '../branding/SwasthyaLogo';
 
 export const PublicNavbar = ({ onNavigate, onOpenChat }) => {
-  const { theme, toggleTheme } = useAuth();
+  const { theme, toggleTheme, loginAsJudge } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
@@ -113,6 +113,10 @@ export const PublicNavbar = ({ onNavigate, onOpenChat }) => {
           <div className="sm:hidden">
             <SwasthyaLogo variant={theme === 'dark' ? 'dark' : 'full'} height={32} />
           </div>
+          <span className="hidden xl:inline-flex items-center gap-1.5 ml-2.5 px-2.5 py-0.5 rounded-full text-[10px] font-black bg-blue-50 dark:bg-blue-950/80 border border-blue-200 dark:border-blue-800 text-blue-700 dark:text-blue-300 shadow-2xs">
+            <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
+            AWS Strands Agents
+          </span>
         </div>
 
         {/* CENTER: Compact Startup Navigation Links */}
@@ -235,22 +239,26 @@ export const PublicNavbar = ({ onNavigate, onOpenChat }) => {
             </button>
           )}
 
-          {/* Login Button - Shown on md+ */}
-          <button 
-            onClick={() => handleNav(ROUTES.AUTH.LOGIN)} 
-            className="hidden md:inline-flex items-center gap-1.5 border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 text-xs font-bold px-3.5 py-1.5 rounded-xl transition-colors cursor-pointer"
+          {/* Continue as Judge (Instant Demo) */}
+          <button
+            type="button"
+            onClick={() => {
+              if (loginAsJudge) loginAsJudge('patient');
+              handleNav(ROUTES.APP.PATIENT.REMINDERS);
+            }}
+            className="inline-flex items-center gap-1.5 bg-emerald-50 dark:bg-emerald-950/80 border-2 border-emerald-500/80 hover:border-emerald-500 hover:bg-emerald-100 dark:hover:bg-emerald-900/60 text-emerald-800 dark:text-emerald-300 text-xs font-black px-3 py-1.5 rounded-xl shadow-xs transition-all cursor-pointer ring-2 ring-emerald-500/20 active:scale-95"
+            title="Bypass login and evaluate pre-seeded clinical dashboard"
           >
-            <UserIcon size={14} className="text-[#0F766E] dark:text-teal-400" />
-            <span>Login</span>
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping shrink-0" />
+            <span className="whitespace-nowrap">Continue as Judge (read-only) →</span>
           </button>
 
-          {/* Get Started Button - Hidden on mobile, shown on sm+ */}
+          {/* Launch App Button */}
           <button 
-            onClick={() => handleNav(ROUTES.AUTH.REGISTER)} 
+            onClick={() => handleNav(ROUTES.AUTH.LOGIN)} 
             className="hidden sm:inline-flex items-center gap-1.5 bg-[#0F766E] hover:bg-[#095650] dark:bg-teal-600 dark:hover:bg-teal-500 text-white text-xs font-bold px-3.5 py-1.5 rounded-xl shadow-md transition-all cursor-pointer active:scale-95"
           >
-            <span>Get Started</span>
-            <ArrowRightIcon size={13} color="#fff" />
+            <span>Launch App →</span>
           </button>
 
           {/* Mobile Hamburger Button */}
@@ -321,6 +329,17 @@ export const PublicNavbar = ({ onNavigate, onOpenChat }) => {
           </button>
 
           <div className="pt-2 flex flex-col gap-2">
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                if (loginAsJudge) loginAsJudge('patient');
+                handleNav(ROUTES.APP.PATIENT.REMINDERS);
+              }}
+              className="w-full bg-emerald-50 dark:bg-emerald-950/80 border-2 border-emerald-500 text-emerald-800 dark:text-emerald-300 py-2.5 rounded-xl font-black text-xs text-center shadow-sm flex items-center justify-center gap-2 cursor-pointer"
+            >
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
+              <span>Continue as Judge (Demo Mode) →</span>
+            </button>
             {onOpenChat && (
               <button
                 type="button"

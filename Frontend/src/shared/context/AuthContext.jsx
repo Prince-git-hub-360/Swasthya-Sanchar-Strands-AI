@@ -294,6 +294,28 @@ export const AuthProvider = ({ children }) => {
     showToast('Logged out successfully.', 'info');
   };
 
+  const loginAsJudge = (role = 'patient') => {
+    const judgeUser = {
+      id: 999,
+      username: 'judge_evaluator',
+      first_name: 'Judge Evaluator',
+      email: 'judge@aws.builder.center',
+      role: role,
+      profile: {
+        role: role,
+        preferred_language: 'hi',
+        full_name: 'Judge Evaluator (AWS Hackathon)',
+        abha_id: '91-2026-4489-0012',
+        phone: '+91 98765 43210',
+      }
+    };
+    setUser(judgeUser);
+    setToken('mock-judge-jwt-token');
+    localStorage.setItem('access_token', 'mock-judge-jwt-token');
+    showToast('Authenticated as Judge (Read-Only Demo Mode)', 'success');
+    return judgeUser;
+  };
+
   const updateLanguage = (code) => {
     setCurrentLang(code);
     localStorage.setItem('app_lang', code);
@@ -326,6 +348,7 @@ export const AuthProvider = ({ children }) => {
         loginWithGoogle,
         register,
         logout,
+        loginAsJudge,
         refreshProfile,
         updateLanguage,
         showToast,

@@ -3,8 +3,8 @@ strands_agents_swarm.agents.rx_pharmacology_agent
 
 RxPharmacologyAgent: Clinical Drug Intelligence & Regimen Structuring Agent.
 Parses pharmaceutical entities, maps Indian brand names to generic salts,
-standardizes clinical frequencies (OD, BD, TDS, 1-0-1), and generates the
-5-Day Visual Pillbox Matrix.
+standardizes clinical frequencies (OD, BD, TDS, 1-0-1), extracts treatment duration,
+and generates the Dynamic Visual Pillbox Matrix.
 """
 
 import re
@@ -16,12 +16,13 @@ from strands_agents_swarm.swarm_types import VisionExtractionResult, PrescribedD
 class RxPharmacologyAgent(StrandsBaseAgent):
     """
     Strands Agent 2: RxPharmacologyAgent
-    Converts raw prescription tokens into structured clinical regimens with visual pill cues.
+    Converts raw prescription tokens into structured clinical regimens with visual pill cues
+    and dynamic treatment duration.
     """
 
     SYSTEM_PROMPT = """You are RxPharmacologyAgent, a clinical pharmacology expert specialized in Indian pharmacopeia.
 Your role is to map regional Indian brand names to generic salts, normalize doctor dosage notations,
-and calculate an exact 5-day visual pillbox schedule for rural patients."""
+extract prescribed course duration, and calculate the exact visual pillbox schedule for rural patients."""
 
     # Common Indian Brand to Generic Knowledge Base
     PHARMA_KB = {
@@ -77,10 +78,10 @@ and calculate an exact 5-day visual pillbox schedule for rural patients."""
             }
         ))
 
-        # Tool 3: Build 5-Day Visual Pillbox Matrix
+        # Tool 3: Build Dynamic Visual Pillbox Matrix
         self.register_tool(StrandsTool(
             name="build_5day_visual_pillbox",
-            description="Constructs daily morning, afternoon, evening, and night pill slots for 5 calendar days.",
+            description="Constructs daily morning, afternoon, evening, and night pill slots dynamically based on prescription course days.",
             func=self._tool_build_pillbox,
             parameters_schema={
                 "type": "object",
@@ -130,9 +131,11 @@ and calculate an exact 5-day visual pillbox schedule for rural patients."""
             return {"frequency": "BD (1-0-1)", "slots": ["Morning", "Night"], "readable": "Twice daily after meals"}
 
     def _tool_build_pillbox(self, drugs: List[Dict[str, Any]]) -> Dict[str, Any]:
-        """Generate Day 1 to Day 5 slots."""
+        """Generate Day 1 to Day N slots dynamically based on prescribed course duration."""
+        max_days = max([d.get("duration_days", 5) for d in drugs], default=5)
+        max_days = max(1, min(max_days, 30))
         days_matrix = {}
-        for day_num in range(1, 6):
+        for day_num in range(1, max_days + 1):
             day_key = f"Day_{day_num}"
             days_matrix[day_key] = {
                 "Morning": [],
@@ -141,16 +144,17 @@ and calculate an exact 5-day visual pillbox schedule for rural patients."""
                 "Night": []
             }
             for d in drugs:
-                slots = d.get("timing_slots", ["Morning", "Night"])
-                for s in slots:
-                    if s in days_matrix[day_key]:
-                        days_matrix[day_key][s].append({
-                            "name": d["generic_name"],
-                            "brand": d["brand_name"],
-                            "dosage": d["dosage"],
-                            "visual_cue": d["visual_pill_color"],
-                            "food": d["food_relation"]
-                        })
+                if day_num <= d.get("duration_days", 5):
+                    slots = d.get("timing_slots", ["Morning", "Night"])
+                    for s in slots:
+                        if s in days_matrix[day_key]:
+                            days_matrix[day_key][s].append({
+                                "name": d["generic_name"],
+                                "brand": d["brand_name"],
+                                "dosage": d["dosage"],
+                                "visual_cue": d["visual_pill_color"],
+                                "food": d["food_relation"]
+                            })
 
         return days_matrix
 
@@ -166,13 +170,18 @@ and calculate an exact 5-day visual pillbox schedule for rural patients."""
             if resolved:
                 sig_info = self.call_tool("normalize_sig_frequency", text_line=line)
 
+                # Extract duration dynamically from prescription (e.g. 'x 5 days', 'x 3 days', 'for 7 days', '5d')
+                duration_match = re.search(r"(?:x\s*|for\s*)?(\d+)\s*(?:days?|d\b)", line, re.IGNORECASE)
+                duration = int(duration_match.group(1)) if duration_match else 5
+                duration = max(1, min(duration, 30))
+
                 drug = PrescribedDrug(
                     brand_name=resolved["matched_brand"],
                     generic_name=resolved["generic"],
                     dosage=resolved["dosage"],
                     frequency=sig_info["frequency"],
                     frequency_expanded=sig_info["readable"],
-                    duration_days=5,
+                    duration_days=duration,
                     food_relation=resolved["food"],
                     visual_pill_color=resolved["color"],
                     purpose=resolved["purpose"]
@@ -180,6 +189,7 @@ and calculate an exact 5-day visual pillbox schedule for rural patients."""
                 # attach helper for pillbox tool
                 drug_dict = drug.__dict__.copy()
                 drug_dict["timing_slots"] = sig_info["slots"]
+                drug_dict["duration_days"] = duration
                 prescribed_drugs.append(drug)
 
         # Fallback default if OCR had noisy text without recognized brand
@@ -197,20 +207,21 @@ and calculate an exact 5-day visual pillbox schedule for rural patients."""
             )
             prescribed_drugs.append(default_drug)
 
-        # Build 5-Day Visual Pillbox Matrix
+        # Build Dynamic Visual Pillbox Matrix
         drugs_payload = [
-            {**d.__dict__, "timing_slots": ["Morning", "Night"] if "BD" in d.frequency else ["Morning"]}
+            {**d.__dict__, "timing_slots": ["Morning", "Night"] if "BD" in d.frequency else ["Morning"], "duration_days": d.duration_days}
             for d in prescribed_drugs
         ]
         pillbox_matrix = self.call_tool("build_5day_visual_pillbox", drugs=drugs_payload)
 
+        course_days = len(pillbox_matrix.keys())
         regimen = PharmacologyRegimen(
             patient_id=patient_id,
             patient_name=patient_name,
             drugs=prescribed_drugs,
             pillbox_5day_matrix=pillbox_matrix,
-            clinical_notes="Prescription structured successfully into 5-day adherence regimen."
+            clinical_notes=f"Prescription structured successfully into {course_days}-day adherence regimen."
         )
 
-        self.log_step("AGENT_ACT_COMPLETE", {"drugs_extracted": len(prescribed_drugs)})
+        self.log_step("AGENT_ACT_COMPLETE", {"drugs_extracted": len(prescribed_drugs), "course_days": course_days})
         return regimen

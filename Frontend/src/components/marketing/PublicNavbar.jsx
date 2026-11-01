@@ -113,14 +113,14 @@ export const PublicNavbar = ({ onNavigate, onOpenChat }) => {
           <div className="sm:hidden">
             <SwasthyaLogo variant={theme === 'dark' ? 'dark' : 'full'} height={32} />
           </div>
-          <span className="hidden xl:inline-flex items-center gap-1.5 ml-2.5 px-2.5 py-0.5 rounded-full text-[10px] font-black bg-blue-50 dark:bg-blue-950/80 border border-blue-200 dark:border-blue-800 text-blue-700 dark:text-blue-300 shadow-2xs">
+          <span className="hidden xl:inline-flex items-center gap-1.5 ml-3 px-2.5 py-0.5 rounded-full text-[10px] font-black bg-blue-50 dark:bg-blue-950/80 border border-blue-200 dark:border-blue-800 text-blue-700 dark:text-blue-300 shadow-2xs">
             <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
             AWS Strands Agents
           </span>
         </div>
 
-        {/* CENTER: Compact Startup Navigation Links */}
-        <nav className="hidden lg:flex items-center gap-5 text-xs font-bold text-slate-700 dark:text-slate-200">
+        {/* CENTER: Compact Startup Navigation Links with ample left margin */}
+        <nav className="hidden lg:flex items-center gap-6 text-xs font-bold text-slate-700 dark:text-slate-200 ml-6">
           <button
             onClick={() => handleNav(ROUTES.PUBLIC.HOME, 'home')}
             className={`transition-all cursor-pointer py-1 ${
@@ -226,37 +226,24 @@ export const PublicNavbar = ({ onNavigate, onOpenChat }) => {
             <span className="hidden sm:inline text-[11px]">{theme === 'dark' ? 'Dark' : 'Light'}</span>
           </button>
 
-          {/* Swasthya Mitr AI Companion Button - Hidden on mobile, shown on sm+ */}
-          {onOpenChat && (
-            <button
-              type="button"
-              onClick={onOpenChat}
-              className="hidden sm:inline-flex items-center gap-1.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 text-xs font-black px-3.5 py-1.5 rounded-xl shadow-md transition-all cursor-pointer border border-amber-300 ring-2 ring-amber-400/20 active:scale-95"
-              title="Open Swasthya Mitr Autonomous AI Assistant"
-            >
-              <SparklesIcon size={14} className="text-slate-950 animate-pulse" />
-              <span>✦ AI Assistant</span>
-            </button>
-          )}
-
-          {/* Continue as Judge (Instant Demo) */}
+          {/* Continue as Judge (Instant Demo Mode) */}
           <button
             type="button"
             onClick={() => {
               if (loginAsJudge) loginAsJudge('patient');
               handleNav(ROUTES.APP.PATIENT.REMINDERS);
             }}
-            className="inline-flex items-center gap-1.5 bg-emerald-50 dark:bg-emerald-950/80 border-2 border-emerald-500/80 hover:border-emerald-500 hover:bg-emerald-100 dark:hover:bg-emerald-900/60 text-emerald-800 dark:text-emerald-300 text-xs font-black px-3 py-1.5 rounded-xl shadow-xs transition-all cursor-pointer ring-2 ring-emerald-500/20 active:scale-95"
+            className="inline-flex items-center gap-1.5 bg-emerald-50 dark:bg-emerald-950/90 border border-emerald-500 hover:bg-emerald-100 dark:hover:bg-emerald-900/60 text-emerald-800 dark:text-emerald-300 text-xs font-black px-3 py-1.5 rounded-xl shadow-xs transition-all cursor-pointer ring-2 ring-emerald-500/20 active:scale-95"
             title="Bypass login and evaluate pre-seeded clinical dashboard"
           >
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping shrink-0" />
-            <span className="whitespace-nowrap">Continue as Judge (read-only) →</span>
+            <span className="whitespace-nowrap">🧑‍⚖️ Judge Demo Mode →</span>
           </button>
 
           {/* Launch App Button */}
           <button 
             onClick={() => handleNav(ROUTES.AUTH.LOGIN)} 
-            className="hidden sm:inline-flex items-center gap-1.5 bg-[#0F766E] hover:bg-[#095650] dark:bg-teal-600 dark:hover:bg-teal-500 text-white text-xs font-bold px-3.5 py-1.5 rounded-xl shadow-md transition-all cursor-pointer active:scale-95"
+            className="hidden sm:inline-flex items-center gap-1 bg-[#0F766E] hover:bg-[#095650] dark:bg-teal-600 dark:hover:bg-teal-500 text-white text-xs font-bold px-3.5 py-1.5 rounded-xl shadow-md transition-all cursor-pointer active:scale-95"
           >
             <span>Launch App →</span>
           </button>

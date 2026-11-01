@@ -433,7 +433,7 @@ export const LandingPage = ({ onNavigate, onOpenChat }) => {
       <main className="flex-1 space-y-12 sm:space-y-16 pt-16 sm:pt-20 pb-8 relative z-10">
         
         {/* HERO SECTION: AWS Strands SDK Multi-Agent Command & 1-Tap Simulator */}
-        <section id="home" className="scroll-mt-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 font-sans transition-colors relative overflow-hidden">
+        <section id="home" className="scroll-mt-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 font-sans transition-colors relative overflow-hidden pb-8 lg:pb-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
             
             {/* Left Column: Mission, Pitch, Metrics & Direct Judge CTA */}
@@ -450,17 +450,17 @@ export const LandingPage = ({ onNavigate, onOpenChat }) => {
                 </div>
               </div>
 
-              {/* Bold Pitch Title */}
-              <h1 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-[1.12]">
-                Turning Real-Time Clinical Handwriting into{' '}
+              {/* Human & Clinical Healthcare Title */}
+              <h1 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-[1.15]">
+                Turning Doctor Prescriptions into{' '}
                 <span className="text-[#0F766E] dark:text-teal-400 italic font-accent-serif font-normal">
-                  Prioritized Tactical Action
+                  Clear Voice & Visual Treatment
                 </span>
               </h1>
 
               {/* Mission Statement */}
               <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl">
-                Most platforms tell patients <strong className="text-slate-900 dark:text-white">what is written</strong>. <strong>Swasthya Sanchar AI</strong> executes an autonomous <strong>4-Agent Swarm</strong> using the <strong>AWS Strands Agents SDK</strong> that decides <strong className="text-teal-700 dark:text-teal-400">what clinical action to authorize next</strong> — converting prescriptions into visual pillboxes, voice guidance in 12+ Indic languages, and real-time toxic overdose safety guardrails (<strong className="text-[#0F766E] dark:text-teal-300 font-mono">~3 ms p50</strong> on local swarm pipeline).
+                Complex medical notes and language barriers should never stop rural families from getting safe healthcare. <strong>Swasthya Sanchar AI</strong> executes an autonomous <strong>4-Agent Swarm (~3 ms p50)</strong> built with the <strong>AWS Strands Agents SDK</strong> that digitizes handwritten notes, generates visual 5-day pillboxes, and speaks clear instructions in 12+ Indic languages.
               </p>
 
               {/* Key Proof Metrics Row */}
@@ -483,25 +483,21 @@ export const LandingPage = ({ onNavigate, onOpenChat }) => {
                 </div>
               </div>
 
-              {/* Primary Call to Actions */}
+              {/* Clean Primary Call to Actions */}
               <div className="flex flex-col sm:flex-row items-center gap-3 pt-2">
                 <button
-                  onClick={() => navigateTo(ROUTES.AUTH.LOGIN)}
+                  onClick={handleRegisterClick}
                   className="w-full sm:w-auto bg-[#0F766E] hover:bg-[#095650] dark:bg-teal-600 dark:hover:bg-teal-500 text-white font-black text-sm px-6 py-3.5 rounded-xl shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-95"
                 >
-                  <span>Open Command Center →</span>
+                  <span>Try Swasthya Sanchar →</span>
                 </button>
 
                 <button
-                  onClick={() => {
-                    if (loginAsJudge) loginAsJudge('patient');
-                    navigateTo(ROUTES.APP.PATIENT.REMINDERS);
-                  }}
-                  className="w-full sm:w-auto bg-emerald-50 dark:bg-emerald-950/80 border-2 border-emerald-500 hover:border-emerald-600 hover:bg-emerald-100 dark:hover:bg-emerald-900/60 text-emerald-800 dark:text-emerald-300 font-black text-sm px-5 py-3.5 rounded-xl shadow-sm transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-95"
-                  title="Direct 1-Click Evaluation for Hackathon Judges"
+                  onClick={() => handleNavClick('bento-features')}
+                  className="w-full sm:w-auto bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 font-bold text-sm px-5 py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 cursor-pointer shadow-xs hover:border-slate-300"
                 >
-                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
-                  <span>Continue as Judge (read-only) →</span>
+                  <PlayIcon size={16} className="text-[#0F766E] dark:text-teal-400" />
+                  <span>Explore Features</span>
                 </button>
               </div>
             </div>

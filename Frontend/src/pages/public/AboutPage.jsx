@@ -1,7 +1,9 @@
 import React from 'react';
 import { 
   HospitalIcon, BrainIcon, ShieldIcon, SparklesIcon, CheckIcon, 
-  SpeakerIcon, ArrowRightIcon, ActivityIcon, PhoneIcon 
+  SpeakerIcon, ArrowRightIcon, ActivityIcon, PhoneIcon,
+  StethoscopeIcon, ShieldCheckIcon, PrescriptionDocIcon,
+  VoiceWaveIcon, PillBoxIcon, OpticalScanIcon, PulseShieldIcon
 } from '../../shared/icons/Icons';
 import { ROUTES, navigateTo } from '../../utils/routes';
 import { PublicNavbar } from '../../components/marketing/PublicNavbar';
@@ -65,19 +67,21 @@ export const AboutPage = ({ onNavigate }) => {
           </div>
         </section>
 
-        {/* 2. THREE BALANCED CORE PILLARS GRID */}
+        {/* 2. THREE BALANCED CORE PILLARS GRID WITH REAL ICONS */}
         <section className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
           
-          {/* Card 1: Problem */}
+          {/* Card 1: Problem (Real Stethoscope Icon) */}
           <div className="bg-white dark:bg-[#161F30] border border-slate-200/90 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm flex flex-col justify-between space-y-4 hover:border-teal-500/50 transition-colors">
             <div className="space-y-4">
-              <div className="w-12 h-12 rounded-2xl bg-rose-50 dark:bg-rose-950/80 border border-rose-200 dark:border-rose-800/80 flex items-center justify-center text-rose-600 dark:text-rose-400">
-                <HospitalIcon size={26} />
+              <div className="flex items-center justify-between">
+                <div className="w-10 h-10 rounded-xl bg-rose-50 dark:bg-rose-950/60 border border-rose-200 dark:border-rose-900/60 flex items-center justify-center text-rose-600 dark:text-rose-400 shadow-2xs">
+                  <StethoscopeIcon size={22} />
+                </div>
+                <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-rose-600 dark:text-rose-400 bg-rose-50 dark:bg-rose-950/80 px-2 py-0.5 rounded-md border border-rose-200/60 dark:border-rose-900/60">
+                  01 • CHALLENGE
+                </span>
               </div>
               <div className="space-y-1">
-                <span className="text-[10px] font-black uppercase tracking-wider text-rose-600 dark:text-rose-400">
-                  01 • THE RURAL HEALTH CHALLENGE
-                </span>
                 <h2 className="text-xl font-extrabold text-slate-900 dark:text-white">
                   Handwriting &amp; Literacy Barriers
                 </h2>
@@ -91,16 +95,18 @@ export const AboutPage = ({ onNavigate }) => {
             </div>
           </div>
 
-          {/* Card 2: Solution */}
+          {/* Card 2: Solution (Real Neural AI Network Icon) */}
           <div className="bg-white dark:bg-[#161F30] border border-slate-200/90 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm flex flex-col justify-between space-y-4 hover:border-teal-500/50 transition-colors">
             <div className="space-y-4">
-              <div className="w-12 h-12 rounded-2xl bg-teal-50 dark:bg-teal-950/80 border border-teal-200 dark:border-teal-800/80 flex items-center justify-center text-[#0F766E] dark:text-teal-400">
-                <BrainIcon size={26} />
+              <div className="flex items-center justify-between">
+                <div className="w-10 h-10 rounded-xl bg-teal-50 dark:bg-teal-950/60 border border-teal-200 dark:border-teal-900/60 flex items-center justify-center text-[#0F766E] dark:text-teal-300 shadow-2xs">
+                  <BrainIcon size={22} />
+                </div>
+                <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#0F766E] dark:text-teal-400 bg-teal-50 dark:bg-teal-950/80 px-2 py-0.5 rounded-md border border-teal-200/60 dark:border-teal-900/60">
+                  02 • STRANDS SWARM
+                </span>
               </div>
               <div className="space-y-1">
-                <span className="text-[10px] font-black uppercase tracking-wider text-[#0F766E] dark:text-teal-400">
-                  02 • AUTONOMOUS INNOVATION
-                </span>
                 <h2 className="text-xl font-extrabold text-slate-900 dark:text-white">
                   AWS Strands 4-Agent Swarm
                 </h2>
@@ -114,16 +120,18 @@ export const AboutPage = ({ onNavigate }) => {
             </div>
           </div>
 
-          {/* Card 3: Governance */}
+          {/* Card 3: Governance (Real Verified Security Shield Icon) */}
           <div className="bg-white dark:bg-[#161F30] border border-slate-200/90 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm flex flex-col justify-between space-y-4 hover:border-teal-500/50 transition-colors">
             <div className="space-y-4">
-              <div className="w-12 h-12 rounded-2xl bg-blue-50 dark:bg-blue-950/80 border border-blue-200 dark:border-blue-800/80 flex items-center justify-center text-blue-600 dark:text-blue-400">
-                <ShieldIcon size={26} />
+              <div className="flex items-center justify-between">
+                <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-900/60 flex items-center justify-center text-blue-600 dark:text-blue-300 shadow-2xs">
+                  <ShieldCheckIcon size={22} />
+                </div>
+                <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/80 px-2 py-0.5 rounded-md border border-blue-200/60 dark:border-blue-900/60">
+                  03 • COMPLIANCE
+                </span>
               </div>
               <div className="space-y-1">
-                <span className="text-[10px] font-black uppercase tracking-wider text-blue-600 dark:text-blue-400">
-                  03 • SAFETY &amp; COMPLIANCE
-                </span>
                 <h2 className="text-xl font-extrabold text-slate-900 dark:text-white">
                   ABDM &amp; CDSCO Grounded
                 </h2>
@@ -139,7 +147,7 @@ export const AboutPage = ({ onNavigate }) => {
 
         </section>
 
-        {/* 3. AWS BUILDER CENTER HACKATHON ARCHITECTURE SHOWCASE */}
+        {/* 3. AWS BUILDER CENTER HACKATHON ARCHITECTURE SHOWCASE WITH REAL AGENT ICONS */}
         <section className="bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 text-white rounded-3xl p-8 sm:p-12 border border-slate-800 shadow-xl space-y-8">
           
           <div className="text-center max-w-3xl mx-auto space-y-3">
@@ -155,35 +163,55 @@ export const AboutPage = ({ onNavigate }) => {
             </p>
           </div>
 
-          {/* 4-Agent Step Diagram */}
+          {/* 4-Agent Step Diagram with Real Specialized Icons */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             
-            <div className="bg-slate-800/80 border border-slate-700/80 rounded-2xl p-5 space-y-2">
-              <div className="text-xs font-mono font-bold text-blue-400">AGENT 01</div>
+            <div className="bg-slate-800/80 border border-slate-700/80 rounded-2xl p-5 space-y-3 hover:border-blue-500/50 transition-colors">
+              <div className="flex items-center justify-between">
+                <div className="w-8 h-8 rounded-lg bg-blue-900/60 border border-blue-700/60 flex items-center justify-center text-blue-400">
+                  <OpticalScanIcon size={18} />
+                </div>
+                <div className="text-[10px] font-mono font-bold text-blue-400">AGENT 01</div>
+              </div>
               <h3 className="font-extrabold text-white text-base">RxVisionAgent</h3>
               <p className="text-xs text-slate-300 leading-relaxed">
                 Optical handwriting OCR and structured clinical token extraction with artifact noise reduction.
               </p>
             </div>
 
-            <div className="bg-slate-800/80 border border-slate-700/80 rounded-2xl p-5 space-y-2">
-              <div className="text-xs font-mono font-bold text-teal-400">AGENT 02</div>
+            <div className="bg-slate-800/80 border border-slate-700/80 rounded-2xl p-5 space-y-3 hover:border-teal-500/50 transition-colors">
+              <div className="flex items-center justify-between">
+                <div className="w-8 h-8 rounded-lg bg-teal-900/60 border border-teal-700/60 flex items-center justify-center text-teal-400">
+                  <PillBoxIcon size={18} />
+                </div>
+                <div className="text-[10px] font-mono font-bold text-teal-400">AGENT 02</div>
+              </div>
               <h3 className="font-extrabold text-white text-base">RxPharmacologyAgent</h3>
               <p className="text-xs text-slate-300 leading-relaxed">
                 Posology calculations, Latin SIG decoding, and dynamic 5-day color-coded pillbox matrix generation.
               </p>
             </div>
 
-            <div className="bg-slate-800/80 border border-slate-700/80 rounded-2xl p-5 space-y-2">
-              <div className="text-xs font-mono font-bold text-purple-400">AGENT 03</div>
+            <div className="bg-slate-800/80 border border-slate-700/80 rounded-2xl p-5 space-y-3 hover:border-purple-500/50 transition-colors">
+              <div className="flex items-center justify-between">
+                <div className="w-8 h-8 rounded-lg bg-purple-900/60 border border-purple-700/60 flex items-center justify-center text-purple-400">
+                  <VoiceWaveIcon size={18} />
+                </div>
+                <div className="text-[10px] font-mono font-bold text-purple-400">AGENT 03</div>
+              </div>
               <h3 className="font-extrabold text-white text-base">VernacularVoiceAgent</h3>
               <p className="text-xs text-slate-300 leading-relaxed">
                 Native speech synthesis across 12+ Indic languages (Hindi, Tamil, Telugu, Kannada, Bengali, Marathi).
               </p>
             </div>
 
-            <div className="bg-slate-800/80 border border-slate-700/80 rounded-2xl p-5 space-y-2">
-              <div className="text-xs font-mono font-bold text-rose-400">AGENT 04</div>
+            <div className="bg-slate-800/80 border border-slate-700/80 rounded-2xl p-5 space-y-3 hover:border-rose-500/50 transition-colors">
+              <div className="flex items-center justify-between">
+                <div className="w-8 h-8 rounded-lg bg-rose-900/60 border border-rose-700/60 flex items-center justify-center text-rose-400">
+                  <PulseShieldIcon size={18} />
+                </div>
+                <div className="text-[10px] font-mono font-bold text-rose-400">AGENT 04</div>
+              </div>
               <h3 className="font-extrabold text-white text-base">ClinicalSafetyOfficer</h3>
               <p className="text-xs text-slate-300 leading-relaxed">
                 Statutory contraindication guardrail, toxic paracetamol intercept, and automated 108/112 ambulance escalation.

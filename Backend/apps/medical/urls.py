@@ -1,7 +1,7 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
-from .views import MedicalDocumentViewSet
+from .views import MedicalDocumentViewSet, StrandsSwarmExecuteAPIView
 from .emergency_views import (
     FirstAidGuidanceAPIView,
     EmergencyContactsAPIView,
@@ -30,6 +30,8 @@ router = DefaultRouter()
 router.register(r'medical-documents', MedicalDocumentViewSet, basename='medicaldocument')
 
 urlpatterns = [
+    path('strands-swarm/execute/', StrandsSwarmExecuteAPIView.as_view(), name='strands-swarm-execute'),
+    path('strands-swarm/', StrandsSwarmExecuteAPIView.as_view(), name='strands-swarm'),
     path('', include(router.urls)),
 
     # NLP & Simplification

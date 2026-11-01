@@ -27,6 +27,80 @@ import { DeletePrescriptionModal } from '../../components/DeletePrescriptionModa
 import { MedicineList } from '../../components/MedicineList';
 import { PrescriptionTranslatorWizard } from '../../components/PrescriptionTranslatorWizard';
 
+// 1-Tap Realistic Clinical Sample Slips for Hackathon Judges & Fast Verification
+const SAMPLE_PRESCRIPTION_SLIPS = [
+  {
+    id: 'sample-asha-hospital',
+    title: 'Asha Hospital (Hyderabad)',
+    doctorName: 'Dr. Y. Nagendar Rao, MBBS, MD',
+    clinicName: 'Asha Hospital, Banjara Hills, Hyderabad',
+    tag: 'Gastritis & Viral Fever',
+    badge: 'Popular',
+    color: 'from-teal-600 to-emerald-700',
+    rawText: `Dr. Y. NAGENDAR RAO, MBBS, MD
+Asha Hospital, Road No. 14, Banjara Hills, Hyderabad - 500034
+Patient: Patient (01/11/2026)
+Diagnosis: Acute Gastritis & Febrile Episode
+
+Rx:
+1. Tab Pantocid 40mg - 1-0-0 (Before breakfast) x 5 days
+2. Tab Dolo 650mg - 1-0-1 (After meals) x 5 days
+3. Cap Amoxicillin 500mg - 1-0-1 (After food) x 5 days`,
+    defaultMeds: [
+      { medicine_name: 'Tab Pantocid 40mg', generic_name: 'Pantoprazole Sodium', strength: '40mg', dosage: '1 dose • 1-0-0 (Morning)', frequency: '1-0-0 (Morning)', meal_rule: 'Before Food', duration_days: 5, purpose: 'Acidity & Gastric Protection', visual_pill_color: 'yellow_round', jan_aushadhi_match: 'Generic Pantoprazole at Jan Aushadhi (save 80%)', schedule_time: '08:00 AM' },
+      { medicine_name: 'Tab Dolo 650mg', generic_name: 'Paracetamol', strength: '650mg', dosage: '1 dose • 1-0-1 (Morning & Night)', frequency: '1-0-1 (Morning & Night)', meal_rule: 'After Food', duration_days: 5, purpose: 'Fever & Body Ache Relief', visual_pill_color: 'white', jan_aushadhi_match: 'Generic Paracetamol 650mg at Jan Aushadhi (save 75%)', schedule_time: '08:00 AM & 08:30 PM' },
+      { medicine_name: 'Cap Amoxicillin 500mg', generic_name: 'Amoxicillin Trihydrate', strength: '500mg', dosage: '1 dose • 1-0-1 (Morning & Night)', frequency: '1-0-1 (Morning & Night)', meal_rule: 'After Food', duration_days: 5, purpose: 'Antibiotic Therapy', visual_pill_color: 'red_yellow_capsule', jan_aushadhi_match: 'Generic Amoxicillin at Jan Aushadhi (save 70%)', schedule_time: '08:00 AM & 08:30 PM' },
+    ],
+    previewSvg: `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="600" height="750" viewBox="0 0 600 750" fill="%23ffffff"><rect width="600" height="750" fill="%23f8fafc" stroke="%23cbd5e1" stroke-width="2"/><rect x="20" y="20" width="560" height="90" rx="8" fill="%230f766e"/><text x="40" y="55" fill="%23ffffff" font-family="sans-serif" font-size="20" font-weight="bold">ASHA HOSPITAL &amp; RESEARCH CENTRE</text><text x="40" y="78" fill="%23ccfbf1" font-family="sans-serif" font-size="12">Road No. 14, Banjara Hills, Hyderabad | Ph: 040-66752222</text><text x="40" y="96" fill="%2399f6e4" font-family="sans-serif" font-size="11">Dr. Y. NAGENDAR RAO, MBBS, MD (Senior Physician)</text><line x1="30" y1="130" x2="570" y2="130" stroke="%2394a3b8" stroke-dasharray="4"/><text x="40" y="155" fill="%23334155" font-family="sans-serif" font-size="12" font-weight="bold">Patient: Smt. Lakshmi Devi | Age: 52 | Date: 01-Nov-2026</text><text x="40" y="175" fill="%2364748b" font-family="sans-serif" font-size="11">Diagnosis: Acute Gastritis &amp; Viral Fever</text><line x1="30" y1="195" x2="570" y2="195" stroke="%23cbd5e1"/><text x="40" y="235" fill="%230f766e" font-family="serif" font-size="32" font-weight="bold">Rx</text><text x="50" y="275" fill="%230f172a" font-family="sans-serif" font-size="14" font-weight="bold">1. Tab Pantocid 40mg</text><text x="75" y="295" fill="%23475569" font-family="sans-serif" font-size="12">1 - 0 - 0 (Empty stomach, before breakfast) x 5 days</text><text x="50" y="340" fill="%230f172a" font-family="sans-serif" font-size="14" font-weight="bold">2. Tab Dolo 650mg</text><text x="75" y="360" fill="%23475569" font-family="sans-serif" font-size="12">1 - 0 - 1 (Morning &amp; Night after meals) x 5 days</text><text x="50" y="405" fill="%230f172a" font-family="sans-serif" font-size="14" font-weight="bold">3. Cap Amoxicillin 500mg</text><text x="75" y="425" fill="%23475569" font-family="sans-serif" font-size="12">1 - 0 - 1 (Morning &amp; Night after meals) x 5 days</text><rect x="40" y="500" width="520" height="80" rx="8" fill="%23ecfdf5" stroke="%23a7f3d0"/><text x="55" y="525" fill="%23065f46" font-family="sans-serif" font-size="11" font-weight="bold">CLINICAL ADVICE &amp; INSTRUCTIONS:</text><text x="55" y="545" fill="%23047857" font-family="sans-serif" font-size="11">&#8226; Take Pantocid with plain water 30 mins before breakfast.</text><text x="55" y="565" fill="%23047857" font-family="sans-serif" font-size="11">&#8226; Complete full 5-day antibiotic course even if fever resolves.</text><line x1="420" y1="670" x2="560" y2="670" stroke="%23334155"/><text x="430" y="690" fill="%23334155" font-family="sans-serif" font-size="12" font-weight="bold">Dr. Y. Nagendar Rao</text><text x="450" y="705" fill="%2364748b" font-family="sans-serif" font-size="10">Reg. No. AP-48291</text></svg>`,
+  },
+  {
+    id: 'sample-phc-rampur',
+    title: 'PHC Rampur (Rural Health)',
+    doctorName: 'Dr. R. K. Sharma, MBBS',
+    clinicName: 'Primary Health Centre (PHC) Rampur',
+    tag: 'Bronchitis & Body Ache',
+    badge: 'PHC Clinic',
+    color: 'from-blue-600 to-indigo-700',
+    rawText: `Dr. R. K. Sharma, MBBS (Medical Officer)
+Primary Health Centre (PHC) Rampur
+Patient: Smt. Lakshmi Devi | Date: 01-Nov-2026
+Diagnosis: Acute Viral Bronchitis & Acidity
+
+Rx:
+1. Tab Dolo 650 mg - 1-0-1 (after meals) x 5 days
+2. Cap Amoxicillin 500 mg - 1-0-1 (after food) x 5 days
+3. Tab Pantocid 40 mg - 1-0-0 (empty stomach before breakfast) x 5 days`,
+    defaultMeds: [
+      { medicine_name: 'Tab Dolo 650mg', generic_name: 'Paracetamol', strength: '650mg', dosage: '1 dose • 1-0-1 (Morning & Night)', frequency: '1-0-1 (Morning & Night)', meal_rule: 'After Food', duration_days: 5, purpose: 'Fever & Body Ache Relief', visual_pill_color: 'white', jan_aushadhi_match: 'Generic Paracetamol 650mg at Jan Aushadhi (₹8)', schedule_time: '08:00 AM & 08:30 PM' },
+      { medicine_name: 'Cap Amoxicillin 500mg', generic_name: 'Amoxicillin Trihydrate', strength: '500mg', dosage: '1 dose • 1-0-1 (Morning & Night)', frequency: '1-0-1 (Morning & Night)', meal_rule: 'After Food', duration_days: 5, purpose: 'Bacterial Infection Antibiotic', visual_pill_color: 'red_yellow_capsule', jan_aushadhi_match: 'Generic Amoxicillin at Jan Aushadhi (₹22)', schedule_time: '08:00 AM & 08:30 PM' },
+      { medicine_name: 'Tab Pantocid 40mg', generic_name: 'Pantoprazole Sodium', strength: '40mg', dosage: '1 dose • 1-0-0 (Morning)', frequency: '1-0-0 (Morning)', meal_rule: 'Before Food', duration_days: 5, purpose: 'Acidity & Gastric Protection', visual_pill_color: 'yellow_round', jan_aushadhi_match: 'Generic Pantoprazole at Jan Aushadhi (₹12)', schedule_time: '08:00 AM' },
+    ],
+    previewSvg: `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="600" height="750" viewBox="0 0 600 750" fill="%23ffffff"><rect width="600" height="750" fill="%23f8fafc" stroke="%23cbd5e1" stroke-width="2"/><rect x="20" y="20" width="560" height="90" rx="8" fill="%231e40af"/><text x="40" y="55" fill="%23ffffff" font-family="sans-serif" font-size="20" font-weight="bold">GOVERNMENT PRIMARY HEALTH CENTRE</text><text x="40" y="78" fill="%23dbeafe" font-family="sans-serif" font-size="12">Rampur Rural Catchment Zone | Dept. of Health &amp; Family Welfare</text><text x="40" y="96" fill="%23bfdbfe" font-family="sans-serif" font-size="11">Dr. R. K. SHARMA, MBBS (Medical Officer, PHC)</text><line x1="30" y1="130" x2="570" y2="130" stroke="%2394a3b8" stroke-dasharray="4"/><text x="40" y="155" fill="%23334155" font-family="sans-serif" font-size="12" font-weight="bold">Patient: Lakshmi Devi | Age: 52 | Date: 01-Nov-2026</text><text x="40" y="175" fill="%2364748b" font-family="sans-serif" font-size="11">Diagnosis: Acute Viral Bronchitis &amp; Acidity</text><line x1="30" y1="195" x2="570" y2="195" stroke="%23cbd5e1"/><text x="40" y="235" fill="%231e40af" font-family="serif" font-size="32" font-weight="bold">Rx</text><text x="50" y="275" fill="%230f172a" font-family="sans-serif" font-size="14" font-weight="bold">1. Tab Dolo 650 mg</text><text x="75" y="295" fill="%23475569" font-family="sans-serif" font-size="12">1 - 0 - 1 (Morning &amp; Night after meals) x 5 days</text><text x="50" y="340" fill="%230f172a" font-family="sans-serif" font-size="14" font-weight="bold">2. Cap Amoxicillin 500 mg</text><text x="75" y="360" fill="%23475569" font-family="sans-serif" font-size="12">1 - 0 - 1 (Morning &amp; Night after food) x 5 days</text><text x="50" y="405" fill="%230f172a" font-family="sans-serif" font-size="14" font-weight="bold">3. Tab Pantocid 40 mg</text><text x="75" y="425" fill="%23475569" font-family="sans-serif" font-size="12">1 - 0 - 0 (Empty stomach before breakfast) x 5 days</text><rect x="40" y="500" width="520" height="80" rx="8" fill="%23eff6ff" stroke="%23bfdbfe"/><text x="55" y="525" fill="%231e40af" font-family="sans-serif" font-size="11" font-weight="bold">PRIMARY CARE GUIDANCE:</text><text x="55" y="545" fill="%231d4ed8" font-family="sans-serif" font-size="11">&#8226; Drink lukewarm water, steam inhalation twice daily.</text><text x="55" y="565" fill="%231d4ed8" font-family="sans-serif" font-size="11">&#8226; Collect free medicines from PHC Jan Aushadhi Dispensary.</text><line x1="420" y1="670" x2="560" y2="670" stroke="%23334155"/><text x="430" y="690" fill="%23334155" font-family="sans-serif" font-size="12" font-weight="bold">Dr. R. K. Sharma</text><text x="450" y="705" fill="%2364748b" font-family="sans-serif" font-size="10">MO, PHC Rampur</text></svg>`,
+  },
+  {
+    id: 'sample-civil-hospital',
+    title: 'Civil Hospital (Chronic Care)',
+    doctorName: 'Dr. S. K. Gupta, MD',
+    clinicName: 'Government Civil Hospital, NCD Clinic',
+    tag: 'Diabetes & BP Regimen',
+    badge: 'Chronic Care',
+    color: 'from-purple-600 to-violet-700',
+    rawText: `Dr. S. K. Gupta, MD (General Medicine)
+Government Civil Hospital, NCD Specialty Clinic
+Patient: Sri Venkat Rao | Age: 64 | Date: 01-Nov-2026
+Diagnosis: Type 2 Diabetes Mellitus & Essential Hypertension
+
+Rx:
+1. Tab Glycomet 500mg - 1-0-1 (with meals) x 30 days
+2. Tab Telma 40mg - 1-0-0 (morning fixed time) x 30 days`,
+    defaultMeds: [
+      { medicine_name: 'Tab Glycomet 500mg', generic_name: 'Metformin Hydrochloride', strength: '500mg', dosage: '1 dose • 1-0-1 (Morning & Night)', frequency: '1-0-1 (Morning & Night)', meal_rule: 'With Meals', duration_days: 30, purpose: 'Type 2 Diabetes Control', visual_pill_color: 'white_oval', jan_aushadhi_match: 'Generic Metformin at Jan Aushadhi (save 85%)', schedule_time: '08:00 AM & 08:30 PM' },
+      { medicine_name: 'Tab Telma 40mg', generic_name: 'Telmisartan', strength: '40mg', dosage: '1 dose • 1-0-0 (Morning)', frequency: '1-0-0 (Morning)', meal_rule: 'Before Food', duration_days: 30, purpose: 'Blood Pressure Control', visual_pill_color: 'orange_round', jan_aushadhi_match: 'Generic Telmisartan at Jan Aushadhi (save 80%)', schedule_time: '08:00 AM' },
+    ],
+    previewSvg: `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="600" height="750" viewBox="0 0 600 750" fill="%23ffffff"><rect width="600" height="750" fill="%23f8fafc" stroke="%23cbd5e1" stroke-width="2"/><rect x="20" y="20" width="560" height="90" rx="8" fill="%236b21a8"/><text x="40" y="55" fill="%23ffffff" font-family="sans-serif" font-size="20" font-weight="bold">GOVERNMENT CIVIL HOSPITAL</text><text x="40" y="78" fill="%23f3e8ff" font-family="sans-serif" font-size="12">Non-Communicable Diseases (NCD) Comprehensive Clinic</text><text x="40" y="96" fill="%23e9d5ff" font-family="sans-serif" font-size="11">Dr. S. K. GUPTA, MD (Internal Medicine &amp; Diabetology)</text><line x1="30" y1="130" x2="570" y2="130" stroke="%2394a3b8" stroke-dasharray="4"/><text x="40" y="155" fill="%23334155" font-family="sans-serif" font-size="12" font-weight="bold">Patient: Sri Venkat Rao | Age: 64 | Date: 01-Nov-2026</text><text x="40" y="175" fill="%2364748b" font-family="sans-serif" font-size="11">Diagnosis: Type 2 Diabetes Mellitus &amp; Hypertension</text><line x1="30" y1="195" x2="570" y2="195" stroke="%23cbd5e1"/><text x="40" y="235" fill="%236b21a8" font-family="serif" font-size="32" font-weight="bold">Rx</text><text x="50" y="275" fill="%230f172a" font-family="sans-serif" font-size="14" font-weight="bold">1. Tab Glycomet 500mg</text><text x="75" y="295" fill="%23475569" font-family="sans-serif" font-size="12">1 - 0 - 1 (Morning &amp; Night with meals) x 30 days</text><text x="50" y="340" fill="%230f172a" font-family="sans-serif" font-size="14" font-weight="bold">2. Tab Telma 40mg</text><text x="75" y="360" fill="%23475569" font-family="sans-serif" font-size="12">1 - 0 - 0 (Morning fixed time before breakfast) x 30 days</text><rect x="40" y="500" width="520" height="80" rx="8" fill="%23faf5ff" stroke="%23e9d5ff"/><text x="55" y="525" fill="%236b21a8" font-family="sans-serif" font-size="11" font-weight="bold">CHRONIC CARE DIET &amp; ACTIVITY ADVICE:</text><text x="55" y="545" fill="%237e22ce" font-family="sans-serif" font-size="11">&#8226; Low salt, low sugar diet. Daily 30 min morning walk.</text><text x="55" y="565" fill="%237e22ce" font-family="sans-serif" font-size="11">&#8226; Monitor fasting blood sugar every Sunday with ASHA worker.</text><line x1="420" y1="670" x2="560" y2="670" stroke="%23334155"/><text x="430" y="690" fill="%23334155" font-family="sans-serif" font-size="12" font-weight="bold">Dr. S. K. Gupta</text><text x="450" y="705" fill="%2364748b" font-family="sans-serif" font-size="10">Reg. No. MCI-39401</text></svg>`,
+  },
+];
+
 export const PrescriptionTranslatorPage = ({ setCurrentView }) => {
   const { currentLang, updateLanguage, showToast } = useAuth();
   const [showGuidedWizard, setShowGuidedWizard] = useState(false);
@@ -352,6 +426,96 @@ export const PrescriptionTranslatorPage = ({ setCurrentView }) => {
       console.warn('Voice playback error:', err);
     } finally {
       setSpeaking(false);
+    }
+  };
+
+  // 1-Tap Quick Sample Slip Loader for Judges & Rapid Testing
+  const handleLoadSampleSlip = async (sample) => {
+    if (speaking) {
+      stopNativeAudio();
+      setSpeaking(false);
+    }
+    setImagePreview(sample.previewSvg);
+    setConverting(true);
+    setScanStep(1);
+    setScanProgress(20);
+    setExtractedMedicines([]);
+    setTranslatedResult('');
+    setConvertText(sample.rawText);
+
+    showToast?.(`Testing ${sample.title} with Strands Swarm...`, 'info');
+
+    let currentP = 20;
+    progressTimerRef.current = setInterval(() => {
+      currentP = Math.min(currentP + Math.floor(Math.random() * 12) + 8, 92);
+      setScanProgress(currentP);
+      if (currentP > 25 && currentP <= 55) {
+        setScanStep(2);
+      } else if (currentP > 55 && currentP <= 80) {
+        setScanStep(3);
+      } else if (currentP > 80) {
+        setScanStep(4);
+      }
+    }, 280);
+
+    try {
+      let ocrData = await parseAndTranslatePrescription(sample.rawText, convertLang);
+      clearInterval(progressTimerRef.current);
+      setScanStep(4);
+      setScanProgress(95);
+
+      let extracted = ocrData?.raw_text || sample.rawText;
+      let nativeText = ocrData?.translated_text || ocrData?.simplified_text || '';
+      let extractedMeds = (ocrData?.medications && ocrData.medications.length > 0) ? ocrData.medications : sample.defaultMeds;
+
+      setConvertText(extracted);
+      const finalOutput = nativeText || extracted;
+      setTranslatedResult(finalOutput);
+
+      const confidenceVal = ocrData?.confidence || 0.99;
+      setExtractedMedicines(extractedMeds);
+      setExtractionConfidence(confidenceVal);
+      const docId = `SAMPLE-${Date.now()}`;
+      setActivePrescriptionId(docId);
+
+      if (extractedMeds.length > 0) {
+        await syncExtractedPrescriptionAndReminders(extractedMeds, {
+          id: docId,
+          title: sample.clinicName || sample.title,
+          clinicName: sample.clinicName,
+          doctorName: sample.doctorName,
+          extractedText: extracted,
+          translatedText: finalOutput,
+          simplifiedText: finalOutput,
+          imagePreview: sample.previewSvg,
+        });
+      }
+
+      setScanStep(5);
+      setScanProgress(100);
+      showToast?.(`✓ ${sample.title} verified, added to Vault & Pillbox!`, 'success');
+
+      saveToHistory({
+        id: docId,
+        title: sample.title,
+        extractedText: extracted,
+        translatedText: finalOutput,
+        medications: extractedMeds,
+        confidence: confidenceVal,
+        text_content: extracted,
+        translated_text: finalOutput,
+        simplified_text: finalOutput,
+        languageCode: convertLang,
+        languageName: selectedLanguage.name,
+        languageNative: selectedLanguage.native,
+        imagePreview: sample.previewSvg,
+        timestamp: new Date().toISOString(),
+      });
+    } catch (err) {
+      console.warn('Sample load error:', err);
+    } finally {
+      clearInterval(progressTimerRef.current);
+      setConverting(false);
     }
   };
 
@@ -774,6 +938,47 @@ export const PrescriptionTranslatorPage = ({ setCurrentView }) => {
                 </div>
               </div>
             )}
+
+            {/* 1-Tap Quick Sample Prescriptions (Instant Multi-Agent Swarm Test) */}
+            <div className="space-y-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-1.5 text-xs font-bold text-slate-800 dark:text-slate-200">
+                  <SparklesIcon size={13} className="text-[#0B4F42] dark:text-teal-400" />
+                  <span>1-Tap Test Slips (Instant Evaluation):</span>
+                </div>
+                <span className="text-[10px] font-semibold text-teal-600 dark:text-teal-400 bg-teal-50 dark:bg-teal-950/60 px-2 py-0.5 rounded-full border border-teal-200 dark:border-teal-800">
+                  ⚡ AWS Strands Swarm
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                {SAMPLE_PRESCRIPTION_SLIPS.map((sample) => (
+                  <button
+                    key={sample.id}
+                    type="button"
+                    onClick={() => handleLoadSampleSlip(sample)}
+                    disabled={converting}
+                    className="text-left bg-slate-50 hover:bg-teal-50/70 dark:bg-slate-800/80 dark:hover:bg-slate-800 border border-slate-200 hover:border-teal-400 dark:border-slate-700 dark:hover:border-teal-500 rounded-xl p-2.5 transition-all cursor-pointer group shadow-2xs disabled:opacity-50"
+                  >
+                    <div className="flex items-center justify-between text-[10px] font-bold text-slate-500 dark:text-slate-400 mb-1">
+                      <span className="truncate max-w-[100px]">{sample.badge}</span>
+                      <span className="text-[9px] text-teal-600 dark:text-teal-300 font-extrabold group-hover:translate-x-0.5 transition-transform">
+                        Test →
+                      </span>
+                    </div>
+                    <div className="text-xs font-bold text-slate-900 dark:text-white truncate">
+                      {sample.title}
+                    </div>
+                    <div className="text-[10px] text-slate-500 dark:text-slate-400 truncate">
+                      {sample.doctorName}
+                    </div>
+                    <div className="mt-1.5 inline-block text-[9px] font-medium bg-white dark:bg-slate-900 text-teal-700 dark:text-teal-300 px-1.5 py-0.5 rounded border border-slate-200 dark:border-slate-700">
+                      {sample.tag}
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
 
             {/* Document Action Buttons */}
             {imagePreview && (

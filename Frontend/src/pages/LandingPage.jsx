@@ -3,7 +3,9 @@ import {
   ArrowRightIcon, PlayIcon, CheckIcon, DocumentIcon, BrainIcon, SpeakerIcon, 
   HeartIcon, SparklesIcon, PhoneIcon, QrCodeIcon, BellIcon, CalendarIcon, 
   ShieldIcon, TranslateIcon, AlertIcon, CloseIcon, ChevronDownIcon, HospitalIcon, 
-  PillIcon, UserIcon, ClockIcon, ChevronLeftIcon 
+  PillIcon, UserIcon, ClockIcon, ChevronLeftIcon,
+  StethoscopeIcon, ShieldCheckIcon, PrescriptionDocIcon,
+  VoiceWaveIcon, PillBoxIcon, OpticalScanIcon, PulseShieldIcon
 } from '../shared/icons/Icons';
 import { ROUTES, navigateTo } from '../utils/routes';
 import { speakNativeAudio } from '../shared/utils/speech';
@@ -675,15 +677,15 @@ export const LandingPage = ({ onNavigate, onOpenChat }) => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { icon: DocumentIcon, title: 'Prescription OCR Scanner', desc: 'Convert complex doctor handwriting into structured plain-text instructions.' },
-              { icon: SpeakerIcon, title: '22+ Voice Audio Engines', desc: 'Spoken voice playback in Hindi, Tamil, Telugu, Bengali, Kannada & Marathi.' },
-              { icon: PillIcon, title: 'Visual Treatment Schedule', desc: 'Organizes morning, lunch, and bedtime dosage slots with 1-tap tracking.' },
+              { icon: PrescriptionDocIcon, title: 'Prescription OCR Scanner', desc: 'Convert complex doctor handwriting into structured plain-text instructions.' },
+              { icon: VoiceWaveIcon, title: '22+ Voice Audio Engines', desc: 'Spoken voice playback in Hindi, Tamil, Telugu, Bengali, Kannada & Marathi.' },
+              { icon: PillBoxIcon, title: 'Visual Treatment Schedule', desc: 'Organizes morning, lunch, and bedtime dosage slots with 1-tap tracking.' },
             ].map((cap, idx) => {
               const Icon = cap.icon;
               return (
                 <div key={idx} className="bg-white dark:bg-[#161F30] border border-slate-200 dark:border-slate-800 p-6 rounded-2xl shadow-xs space-y-3 hover:border-teal-500 transition-colors">
-                  <div className="w-10 h-10 bg-teal-100 dark:bg-teal-900/60 rounded-xl flex items-center justify-center text-[#0F766E]">
-                    <Icon size={20} className="text-[#0B4F42] dark:text-teal-300" />
+                  <div className="w-10 h-10 bg-teal-50 dark:bg-teal-950/60 border border-teal-200 dark:border-teal-800/80 rounded-xl flex items-center justify-center text-[#0F766E] dark:text-teal-300 shadow-2xs">
+                    <Icon size={20} />
                   </div>
                   <h3 className="font-bold text-lg text-slate-900 dark:text-white">{cap.title}</h3>
                   <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">{cap.desc}</p>
@@ -897,11 +899,14 @@ export const LandingPage = ({ onNavigate, onOpenChat }) => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {/* Agent 1 */}
             <div className="bg-white dark:bg-[#161F30] border border-slate-200 dark:border-slate-800 p-5 rounded-2xl shadow-xs space-y-3 hover:border-blue-500 transition-colors">
-              <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900/60 rounded-xl flex items-center justify-center text-blue-600 dark:text-blue-300 font-black text-sm">
-                01
+              <div className="flex items-center justify-between">
+                <div className="w-10 h-10 bg-blue-50 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-900/60 rounded-xl flex items-center justify-center text-blue-600 dark:text-blue-400 shadow-2xs">
+                  <OpticalScanIcon size={20} />
+                </div>
+                <span className="text-[10px] font-mono font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider bg-blue-50 dark:bg-blue-950/80 px-2 py-0.5 rounded border border-blue-200/60 dark:border-blue-900/60">01 INTAKE</span>
               </div>
               <div>
-                <span className="text-[10px] font-black uppercase tracking-wider text-blue-600 dark:text-blue-400">Intake & Vision</span>
+                <span className="text-[10px] font-black uppercase tracking-wider text-blue-600 dark:text-blue-400">Vision OCR</span>
                 <h3 className="font-bold text-base text-slate-900 dark:text-white">RxVisionAgent</h3>
               </div>
               <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
@@ -914,11 +919,14 @@ export const LandingPage = ({ onNavigate, onOpenChat }) => {
 
             {/* Agent 2 */}
             <div className="bg-white dark:bg-[#161F30] border border-slate-200 dark:border-slate-800 p-5 rounded-2xl shadow-xs space-y-3 hover:border-teal-500 transition-colors">
-              <div className="w-10 h-10 bg-teal-100 dark:bg-teal-900/60 rounded-xl flex items-center justify-center text-teal-600 dark:text-teal-300 font-black text-sm">
-                02
+              <div className="flex items-center justify-between">
+                <div className="w-10 h-10 bg-teal-50 dark:bg-teal-950/60 border border-teal-200 dark:border-teal-900/60 rounded-xl flex items-center justify-center text-[#0F766E] dark:text-teal-400 shadow-2xs">
+                  <PillBoxIcon size={20} />
+                </div>
+                <span className="text-[10px] font-mono font-bold text-[#0F766E] dark:text-teal-400 uppercase tracking-wider bg-teal-50 dark:bg-teal-950/80 px-2 py-0.5 rounded border border-teal-200/60 dark:border-teal-900/60">02 POSOLOGY</span>
               </div>
               <div>
-                <span className="text-[10px] font-black uppercase tracking-wider text-[#0F766E] dark:text-teal-400">Posology Engine</span>
+                <span className="text-[10px] font-black uppercase tracking-wider text-[#0F766E] dark:text-teal-400">Regimen Engine</span>
                 <h3 className="font-bold text-base text-slate-900 dark:text-white">RxPharmacologyAgent</h3>
               </div>
               <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
@@ -931,8 +939,11 @@ export const LandingPage = ({ onNavigate, onOpenChat }) => {
 
             {/* Agent 3 */}
             <div className="bg-white dark:bg-[#161F30] border border-slate-200 dark:border-slate-800 p-5 rounded-2xl shadow-xs space-y-3 hover:border-purple-500 transition-colors">
-              <div className="w-10 h-10 bg-purple-100 dark:bg-purple-900/60 rounded-xl flex items-center justify-center text-purple-600 dark:text-purple-300 font-black text-sm">
-                03
+              <div className="flex items-center justify-between">
+                <div className="w-10 h-10 bg-purple-50 dark:bg-purple-950/60 border border-purple-200 dark:border-purple-900/60 rounded-xl flex items-center justify-center text-purple-600 dark:text-purple-400 shadow-2xs">
+                  <VoiceWaveIcon size={20} />
+                </div>
+                <span className="text-[10px] font-mono font-bold text-purple-600 dark:text-purple-400 uppercase tracking-wider bg-purple-50 dark:bg-purple-950/80 px-2 py-0.5 rounded border border-purple-200/60 dark:border-purple-900/60">03 VOICE</span>
               </div>
               <div>
                 <span className="text-[10px] font-black uppercase tracking-wider text-purple-600 dark:text-purple-400">Audio Dialects</span>
@@ -948,8 +959,11 @@ export const LandingPage = ({ onNavigate, onOpenChat }) => {
 
             {/* Agent 4 */}
             <div className="bg-white dark:bg-[#161F30] border border-slate-200 dark:border-slate-800 p-5 rounded-2xl shadow-xs space-y-3 hover:border-rose-500 transition-colors">
-              <div className="w-10 h-10 bg-rose-100 dark:bg-rose-900/60 rounded-xl flex items-center justify-center text-rose-600 dark:text-rose-300 font-black text-sm">
-                04
+              <div className="flex items-center justify-between">
+                <div className="w-10 h-10 bg-rose-50 dark:bg-rose-950/60 border border-rose-200 dark:border-rose-900/60 rounded-xl flex items-center justify-center text-rose-600 dark:text-rose-400 shadow-2xs">
+                  <PulseShieldIcon size={20} />
+                </div>
+                <span className="text-[10px] font-mono font-bold text-rose-600 dark:text-rose-400 uppercase tracking-wider bg-rose-50 dark:bg-rose-950/80 px-2 py-0.5 rounded border border-rose-200/60 dark:border-rose-900/60">04 CRITIC</span>
               </div>
               <div>
                 <span className="text-[10px] font-black uppercase tracking-wider text-rose-600 dark:text-rose-400">Safety & Compliance</span>
@@ -1292,8 +1306,8 @@ export const LandingPage = ({ onNavigate, onOpenChat }) => {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
               <div className="bg-slate-50 dark:bg-slate-900/60 p-5 rounded-2xl border border-slate-200/80 dark:border-slate-800 space-y-2">
-                <div className="text-teal-600 dark:text-teal-400 font-bold text-sm flex items-center gap-1.5">
-                  <HospitalIcon size={18} />
+                <div className="text-rose-600 dark:text-rose-400 font-bold text-sm flex items-center gap-1.5">
+                  <StethoscopeIcon size={18} />
                   <span>The Rural Healthcare Challenge</span>
                 </div>
                 <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
@@ -1312,8 +1326,8 @@ export const LandingPage = ({ onNavigate, onOpenChat }) => {
               </div>
 
               <div className="bg-slate-50 dark:bg-slate-900/60 p-5 rounded-2xl border border-slate-200/80 dark:border-slate-800 space-y-2">
-                <div className="text-teal-600 dark:text-teal-400 font-bold text-sm flex items-center gap-1.5">
-                  <ShieldIcon size={18} />
+                <div className="text-blue-600 dark:text-blue-400 font-bold text-sm flex items-center gap-1.5">
+                  <ShieldCheckIcon size={18} />
                   <span>ABDM & CDSCO Compliance</span>
                 </div>
                 <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">

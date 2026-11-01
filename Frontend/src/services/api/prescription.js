@@ -1,6 +1,17 @@
 import { request } from './client';
 
 export const prescriptionApi = {
+  async executeStrandsSwarm(prescription_text, target_language = 'hi', patient_name = 'Patient', acute_symptoms = '') {
+    return request('/medical-documents/strands-swarm/', {
+      method: 'POST',
+      body: JSON.stringify({
+        prescription_text,
+        target_language,
+        patient_name,
+        acute_symptoms,
+      }),
+    });
+  },
   async parsePrescriptionText(raw_text, target_language = 'hi') {
     return request('/medical-documents/parse-text/', {
       method: 'POST',

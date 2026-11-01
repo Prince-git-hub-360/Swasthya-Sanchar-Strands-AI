@@ -13,10 +13,15 @@ export const DocumentIcon = ({ size = 24, color = 'currentColor', className = ''
 );
 
 export const BrainIcon = ({ size = 24, color = 'currentColor', className = '' }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
-    <path d="M12 5V19" stroke={color} strokeWidth="2" strokeLinecap="round"/>
-    <path d="M12 5C10 5 8 3.5 6 3.5C3.5 3.5 2 5.5 2 8C2 10.5 4 11.5 5 12C4 13 3 14 3 16C3 18.5 5 20.5 7.5 20.5C9.5 20.5 11 19.5 12 19" stroke={color} strokeWidth="2" strokeLinecap="round"/>
-    <path d="M12 5C14 5 16 3.5 18 3.5C20.5 3.5 22 5.5 22 8C22 10.5 20 11.5 19 12C20 13 21 14 21 16C21 18.5 19 20.5 16.5 20.5C14.5 20.5 13 19.5 12 19" stroke={color} strokeWidth="2" strokeLinecap="round"/>
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M12 2a4 4 0 0 0-4 4v1a4 4 0 0 0-3 3.87A3.5 3.5 0 0 0 4 14a3.5 3.5 0 0 0 2 3.16V18a4 4 0 0 0 4 4h4a4 4 0 0 0 4-4v-.84A3.5 3.5 0 0 0 20 14a3.5 3.5 0 0 0-1-3.13A4 4 0 0 0 16 7V6a4 4 0 0 0-4-4z" />
+    <path d="M9.5 10a2.5 2.5 0 0 1 5 0" />
+    <path d="M12 10v4" />
+    <circle cx="12" cy="14" r="1" fill={color} />
+    <circle cx="8" cy="11" r="1" fill={color} />
+    <circle cx="16" cy="11" r="1" fill={color} />
+    <circle cx="9" cy="17" r="1" fill={color} />
+    <circle cx="15" cy="17" r="1" fill={color} />
   </svg>
 );
 
@@ -319,3 +324,68 @@ export const UploadIcon = CloudUploadIcon;
 
 
 
+
+export const StethoscopeIcon = ({ size = 24, color = 'currentColor', className = '' }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M4.5 3v5a4.5 4.5 0 0 0 9 0V3" />
+    <path d="M3 3h3" />
+    <path d="M12 3h3" />
+    <path d="M9 12.5V17a4 4 0 0 0 4 4h1a4 4 0 0 0 4-4v-3" />
+    <circle cx="18" cy="12" r="2" />
+  </svg>
+);
+
+export const ShieldCheckIcon = ({ size = 24, color = 'currentColor', className = '' }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+    <path d="m9 12 2 2 4-4" />
+  </svg>
+);
+
+export const PrescriptionDocIcon = ({ size = 24, color = 'currentColor', className = '' }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+    <polyline points="14 2 14 8 20 8" />
+    <path d="M8 13h3a1.5 1.5 0 0 0 0-3H8v6" />
+    <path d="m11 13 2 3" />
+    <line x1="14" y1="18" x2="18" y2="18" />
+  </svg>
+);
+
+export const VoiceWaveIcon = ({ size = 24, color = 'currentColor', className = '' }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M12 2v20" />
+    <path d="M8 6v12" />
+    <path d="M16 6v12" />
+    <path d="M4 10v4" />
+    <path d="M20 10v4" />
+  </svg>
+);
+
+export const PillBoxIcon = ({ size = 24, color = 'currentColor', className = '' }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <rect x="3" y="4" width="18" height="16" rx="3" />
+    <line x1="9" y1="4" x2="9" y2="20" />
+    <line x1="15" y1="4" x2="15" y2="20" />
+    <line x1="3" y1="12" x2="21" y2="12" />
+  </svg>
+);
+
+export const OpticalScanIcon = ({ size = 24, color = 'currentColor', className = '' }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M3 7V5a2 2 0 0 1 2-2h2" />
+    <path d="M17 3h2a2 2 0 0 1 2 2v2" />
+    <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
+    <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
+    <line x1="3" y1="12" x2="21" y2="12" />
+    <path d="M7 8h10" />
+    <path d="M7 16h6" />
+  </svg>
+);
+
+export const PulseShieldIcon = ({ size = 24, color = 'currentColor', className = '' }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+    <path d="M8 12h2l1-2 2 4 1-2h2" />
+  </svg>
+);

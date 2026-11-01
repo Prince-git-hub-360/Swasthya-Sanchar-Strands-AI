@@ -95,7 +95,7 @@ export const AppNavbar = ({ currentPath, onNavigate, onOpenChat }) => {
 
   const userName = user?.first_name
     ? `${user.first_name} ${user.last_name || ''}`.trim()
-    : user?.username || 'Prince Kumar';
+    : user?.username || (user?.is_judge ? 'Judge Evaluator' : 'Swasthya Citizen');
   const userInitial = userName.charAt(0).toUpperCase();
 
   const isDoctor = role === 'doctor';

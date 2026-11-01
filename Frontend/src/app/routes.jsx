@@ -88,8 +88,10 @@ export const AppRoutes = () => {
     return <AuthenticatedApp currentPath={defaultAppRoute} navigate={navigate} onOpenChat={() => setChatModalOpen(true)} chatModalOpen={chatModalOpen} setChatModalOpen={setChatModalOpen} />;
   }
 
-  // AUTH GUARD 2: Unauthenticated user visiting /app/* -> Redirect to /login
-  if (!user && currentPath.startsWith('/app')) {
+  const isJudgeMode = user?.is_judge || (typeof window !== 'undefined' && localStorage.getItem('swasthya_judge_mode') === 'true');
+
+  // AUTH GUARD 2: Unauthenticated user visiting /app/* -> Redirect to /login (Bypassed in Judge Demo Mode)
+  if (!user && !isJudgeMode && currentPath.startsWith('/app')) {
     window.history.replaceState({}, '', ROUTES.AUTH.LOGIN);
     return <LoginPage onNavigate={navigate} onSuccess={(targetRoute) => navigate(targetRoute)} />;
   }
@@ -133,8 +135,8 @@ export const AppRoutes = () => {
     return <RegisterPage initialUsername={prefillUsername} onNavigate={navigate} onSuccess={(targetRoute) => navigate(targetRoute)} />;
   }
 
-  // ROUTE 5: AUTHENTICATED APPLICATION (/app/*)
-  if (user && currentPath.startsWith('/app')) {
+  // ROUTE 5: AUTHENTICATED APPLICATION (/app/*) (Allows Judge Mode without standard auth)
+  if ((user || isJudgeMode) && currentPath.startsWith('/app')) {
     return (
       <AuthenticatedApp 
         currentPath={currentPath} 
@@ -151,8 +153,9 @@ export const AppRoutes = () => {
 };
 
 const AuthenticatedApp = ({ currentPath, navigate, onOpenChat, chatModalOpen, setChatModalOpen }) => {
-  const { user } = useAuth();
-  const role = user?.role || 'patient';
+  const { user, loginAsJudge, logout } = useAuth();
+  const isJudge = user?.is_judge || (typeof window !== 'undefined' && localStorage.getItem('swasthya_judge_mode') === 'true');
+  const role = user?.role || (typeof window !== 'undefined' && localStorage.getItem('swasthya_judge_role')) || 'patient';
   const [selectedMedForAI, setSelectedMedForAI] = useState(null);
 
   useEffect(() => {
@@ -267,6 +270,49 @@ const AuthenticatedApp = ({ currentPath, navigate, onOpenChat, chatModalOpen, se
 
   return (
     <div className="min-h-screen flex flex-col bg-[#FDFBF7] dark:bg-[#0B0F17] text-slate-900 dark:text-slate-100 antialiased relative font-sans transition-colors duration-200">
+      {/* JUDGE DEMO MODE PERSISTENT STICKY BANNER */}
+      {isJudge && (
+        <div className="bg-emerald-800 text-white px-3 sm:px-6 py-2 text-xs font-bold flex flex-wrap items-center justify-between gap-2 shadow-md sticky top-0 z-50 border-b border-emerald-700 lg:pl-[260px]">
+          <div className="flex items-center gap-2">
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-300 animate-ping shrink-0" />
+            <span className="text-emerald-100 font-extrabold uppercase tracking-wide text-[11px]">🧑‍⚖️ AWS Hackathon Judge Demo Mode</span>
+            <span className="hidden md:inline text-emerald-200 font-normal">• Zero Login Required (Pre-Seeded Regimen)</span>
+          </div>
+          <div className="flex items-center gap-1.5 sm:gap-2">
+            <span className="text-[10px] text-emerald-200 uppercase tracking-wider font-extrabold mr-1 hidden sm:inline">Switch Persona:</span>
+            <button
+              type="button"
+              onClick={() => { if (loginAsJudge) loginAsJudge('patient'); navigate(ROUTES.APP.PATIENT.REMINDERS); }}
+              className={`px-2.5 py-1 rounded-lg text-xs font-black cursor-pointer transition-all ${role === 'patient' ? 'bg-white text-emerald-950 shadow-sm' : 'bg-emerald-900/80 hover:bg-emerald-900 text-emerald-100'}`}
+            >
+              👤 Patient
+            </button>
+            <button
+              type="button"
+              onClick={() => { if (loginAsJudge) loginAsJudge('healthcare_worker'); navigate(ROUTES.APP.ASHA.DASHBOARD); }}
+              className={`px-2.5 py-1 rounded-lg text-xs font-black cursor-pointer transition-all ${role === 'healthcare_worker' ? 'bg-white text-emerald-950 shadow-sm' : 'bg-emerald-900/80 hover:bg-emerald-900 text-emerald-100'}`}
+            >
+              👩‍⚕️ ASHA
+            </button>
+            <button
+              type="button"
+              onClick={() => { if (loginAsJudge) loginAsJudge('doctor'); navigate(ROUTES.APP.DOCTOR.DASHBOARD); }}
+              className={`px-2.5 py-1 rounded-lg text-xs font-black cursor-pointer transition-all ${role === 'doctor' ? 'bg-white text-emerald-950 shadow-sm' : 'bg-emerald-900/80 hover:bg-emerald-900 text-emerald-100'}`}
+            >
+              🩺 Doctor
+            </button>
+            <button
+              type="button"
+              onClick={() => { if (logout) logout(); navigate(ROUTES.PUBLIC.HOME); }}
+              className="ml-1 sm:ml-2 px-2 py-1 rounded-lg bg-black/40 hover:bg-black/60 text-[10px] text-emerald-200 cursor-pointer transition-colors"
+              title="Exit Judge Demo Mode"
+            >
+              Exit ✕
+            </button>
+          </div>
+        </div>
+      )}
+
       <AppNavbar currentPath={currentPath} onNavigate={navigate} onOpenChat={() => { setSelectedMedForAI(null); onOpenChat(); }} />
 
       <main className="flex-1 lg:pl-[248px] transition-all duration-200">

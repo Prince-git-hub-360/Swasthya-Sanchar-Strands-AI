@@ -486,18 +486,32 @@ export const LandingPage = ({ onNavigate, onOpenChat }) => {
               {/* Clean Primary Call to Actions */}
               <div className="flex flex-col sm:flex-row items-center gap-3 pt-2">
                 <button
-                  onClick={handleRegisterClick}
-                  className="w-full sm:w-auto bg-[#0F766E] hover:bg-[#095650] dark:bg-teal-600 dark:hover:bg-teal-500 text-white font-black text-sm px-6 py-3.5 rounded-xl shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-95"
+                  type="button"
+                  onClick={() => {
+                    if (loginAsJudge) loginAsJudge('patient');
+                    if (onNavigate) onNavigate(ROUTES.APP.PATIENT.REMINDERS);
+                    else navigateTo(ROUTES.APP.PATIENT.REMINDERS);
+                  }}
+                  className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white font-black text-sm px-6 py-3.5 rounded-xl shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-95 ring-2 ring-emerald-400/30"
+                  title="Directly enter live clinical dashboard without login"
                 >
-                  <span>Try Swasthya Sanchar →</span>
+                  <span className="w-2 h-2 rounded-full bg-emerald-200 animate-ping" />
+                  <span>🧑‍⚖️ Continue as Judge (Demo Mode) →</span>
+                </button>
+
+                <button
+                  onClick={handleRegisterClick}
+                  className="w-full sm:w-auto bg-[#0F766E] hover:bg-[#095650] dark:bg-teal-600 dark:hover:bg-teal-500 text-white font-bold text-sm px-5 py-3.5 rounded-xl shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-95"
+                >
+                  <span>Launch App →</span>
                 </button>
 
                 <button
                   onClick={() => handleNavClick('how-it-works')}
-                  className="w-full sm:w-auto bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 font-bold text-sm px-5 py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 cursor-pointer shadow-xs hover:border-slate-300"
+                  className="w-full sm:w-auto bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 font-bold text-sm px-4 py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 cursor-pointer shadow-xs hover:border-slate-300"
                 >
                   <PlayIcon size={16} className="text-[#0F766E] dark:text-teal-400" />
-                  <span>Explore Features</span>
+                  <span>How It Works</span>
                 </button>
               </div>
             </div>

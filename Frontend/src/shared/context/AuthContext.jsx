@@ -29,6 +29,105 @@ export const LANGUAGES = [
   { code: 'en', name: 'English', native: 'English', flag: '🇬🇧' },
 ];
 
+export const MOCK_JUDGE_USER = {
+  id: 999,
+  username: 'judge_evaluator',
+  first_name: 'Judge Evaluator',
+  email: 'judge@aws.builder.center',
+  role: 'patient',
+  is_judge: true,
+  profile: {
+    role: 'patient',
+    preferred_language: 'hi',
+    full_name: 'Judge Evaluator (AWS Hackathon)',
+    abha_id: '91-2026-4489-0012',
+    phone: '+91 98765 43210',
+  }
+};
+
+export const SEEDED_JUDGE_REMINDERS = [
+  {
+    id: 'rx-dolo-morning',
+    medication_name: 'Tab Dolo 650mg',
+    title: 'Tab Dolo 650mg',
+    dosage: '1 Tablet',
+    scheduled_time: '08:00 AM',
+    time: '08:00 AM',
+    meal_rule: 'after_meal',
+    mealTiming: 'Morning & Night (After Food - PC)',
+    timeSlot: 'morning',
+    instructions: '1 गोली सुबह नाश्ते के बाद और रात खाने के बाद ताज़ा पानी के साथ लें (Fever & Body Ache)',
+    is_taken: false,
+    duration_days: 5,
+    pillColor: 'white',
+    pillShape: 'round'
+  },
+  {
+    id: 'rx-amox-morning',
+    medication_name: 'Cap Amoxicillin 500mg',
+    title: 'Cap Amoxicillin 500mg',
+    dosage: '1 Capsule',
+    scheduled_time: '08:00 AM',
+    time: '08:00 AM',
+    meal_rule: 'after_meal',
+    mealTiming: 'Morning & Night (After Food - PC)',
+    timeSlot: 'morning',
+    instructions: '1 कैप्सूल सुबह और रात खाने के बाद 5 दिन तक पूरा लें (Antibiotic Therapy)',
+    is_taken: false,
+    duration_days: 5,
+    pillColor: 'red_yellow',
+    pillShape: 'capsule'
+  },
+  {
+    id: 'rx-pantocid-morning',
+    medication_name: 'Tab Pantocid 40mg',
+    title: 'Tab Pantocid 40mg',
+    dosage: '1 Tablet',
+    scheduled_time: '07:30 AM',
+    time: '07:30 AM',
+    meal_rule: 'before_meal',
+    mealTiming: 'Morning (Empty Stomach - AC)',
+    timeSlot: 'morning',
+    instructions: '1 गोली सुबह खाली पेट नाश्ते से 30 मिनट पहले लें (Acidity & Gastric Protection)',
+    is_taken: true,
+    duration_days: 5,
+    pillColor: 'yellow',
+    pillShape: 'round'
+  },
+  {
+    id: 'rx-dolo-night',
+    medication_name: 'Tab Dolo 650mg (Night)',
+    title: 'Tab Dolo 650mg',
+    dosage: '1 Tablet',
+    scheduled_time: '08:30 PM',
+    time: '08:30 PM',
+    meal_rule: 'after_meal',
+    mealTiming: 'Night (After Dinner - PC)',
+    timeSlot: 'night',
+    instructions: '1 गोली रात खाने के बाद ताज़ा पानी के साथ लें',
+    is_taken: false,
+    duration_days: 5,
+    pillColor: 'white',
+    pillShape: 'round'
+  },
+  {
+    id: 'rx-amox-night',
+    medication_name: 'Cap Amoxicillin 500mg (Night)',
+    title: 'Cap Amoxicillin 500mg',
+    dosage: '1 Capsule',
+    scheduled_time: '08:30 PM',
+    time: '08:30 PM',
+    meal_rule: 'after_meal',
+    mealTiming: 'Night (After Dinner - PC)',
+    timeSlot: 'night',
+    instructions: '1 कैप्सूल रात खाने के बाद लें',
+    is_taken: false,
+    duration_days: 5,
+    pillColor: 'red_yellow',
+    pillShape: 'capsule'
+  }
+];
+
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(localStorage.getItem('access_token') || null);
@@ -120,6 +219,9 @@ export const AuthProvider = ({ children }) => {
     checkHealth();
 
     const handleSessionExpired = () => {
+      if (localStorage.getItem('swasthya_judge_mode') === 'true') {
+        return;
+      }
       localStorage.removeItem('access_token');
       localStorage.removeItem('refresh_token');
       setToken(null);
@@ -130,6 +232,21 @@ export const AuthProvider = ({ children }) => {
     window.addEventListener('auth:session_expired', handleSessionExpired);
 
     const initAuth = async () => {
+      if (localStorage.getItem('swasthya_judge_mode') === 'true' || token === 'mock-judge-jwt-token') {
+        const savedRole = localStorage.getItem('swasthya_judge_role') || 'patient';
+        setUser({
+          ...MOCK_JUDGE_USER,
+          role: savedRole,
+          is_judge: true,
+          profile: {
+            ...MOCK_JUDGE_USER.profile,
+            role: savedRole,
+          }
+        });
+        setLoading(false);
+        return;
+      }
+
       if (token) {
         try {
           const profileData = await api.getProfile();
@@ -289,6 +406,8 @@ export const AuthProvider = ({ children }) => {
     }
     localStorage.removeItem('access_token');
     localStorage.removeItem('refresh_token');
+    localStorage.removeItem('swasthya_judge_mode');
+    localStorage.removeItem('swasthya_judge_role');
     setToken(null);
     setUser(null);
     showToast('Logged out successfully.', 'info');
@@ -296,23 +415,26 @@ export const AuthProvider = ({ children }) => {
 
   const loginAsJudge = (role = 'patient') => {
     const judgeUser = {
-      id: 999,
-      username: 'judge_evaluator',
-      first_name: 'Judge Evaluator',
-      email: 'judge@aws.builder.center',
+      ...MOCK_JUDGE_USER,
       role: role,
+      is_judge: true,
       profile: {
+        ...MOCK_JUDGE_USER.profile,
         role: role,
-        preferred_language: 'hi',
-        full_name: 'Judge Evaluator (AWS Hackathon)',
-        abha_id: '91-2026-4489-0012',
-        phone: '+91 98765 43210',
       }
     };
     setUser(judgeUser);
     setToken('mock-judge-jwt-token');
     localStorage.setItem('access_token', 'mock-judge-jwt-token');
-    showToast('Authenticated as Judge (Read-Only Demo Mode)', 'success');
+    localStorage.setItem('swasthya_judge_mode', 'true');
+    localStorage.setItem('swasthya_judge_role', role);
+    localStorage.setItem('swasthya_pillbox_reminders', JSON.stringify(SEEDED_JUDGE_REMINDERS));
+    localStorage.setItem('swasthya_medications', JSON.stringify(SEEDED_JUDGE_REMINDERS));
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new Event('swasthya_reminders_updated'));
+      window.dispatchEvent(new Event('storage'));
+    }
+    showToast(`🧑‍⚖️ Evaluating as ${role === 'patient' ? 'Patient' : role === 'doctor' ? 'PHC Doctor' : 'ASHA Worker'} (No login needed)`, 'success');
     return judgeUser;
   };
 

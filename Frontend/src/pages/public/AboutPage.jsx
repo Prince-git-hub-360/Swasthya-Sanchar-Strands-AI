@@ -6,7 +6,7 @@ export const AboutPage = ({ onNavigate }) => {
   return (
     <div className="min-h-screen flex flex-col bg-[#FAFAFA] dark:bg-[#0B0F17] text-stone-900 dark:text-slate-100 font-sans antialiased transition-colors duration-200">
       <PublicNavbar onNavigate={onNavigate} />
-      <main className="flex-1">
+      <main className="flex-1 pt-20 sm:pt-24 pb-12">
         <AboutContent onNavigate={onNavigate} />
       </main>
     </div>

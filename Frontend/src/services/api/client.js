@@ -46,6 +46,10 @@ export async function request(endpoint, options = {}, isRetry = false) {
 
     // If 401 Unauthorized and not already retrying login/refresh
     if (response.status === 401 && !isRetry && endpoint !== '/auth/login/' && endpoint !== '/auth/token/refresh/') {
+      // Allow Judge Demo Mode to continue without session eviction
+      if (typeof window !== 'undefined' && (localStorage.getItem('swasthya_judge_mode') === 'true' || token === 'mock-judge-jwt-token')) {
+        return endpoint.includes('/reminders') || endpoint.includes('/prescriptions') || endpoint.includes('/patients') ? [] : {};
+      }
       const refreshToken = localStorage.getItem('refresh_token');
 
       if (refreshToken) {
@@ -137,6 +141,9 @@ export async function request(endpoint, options = {}, isRetry = false) {
 }
 
 export function clearSession() {
+  if (typeof window !== 'undefined' && localStorage.getItem('swasthya_judge_mode') === 'true') {
+    return;
+  }
   localStorage.removeItem('access_token');
   localStorage.removeItem('refresh_token');
   if (typeof window !== 'undefined' && window.dispatchEvent) {

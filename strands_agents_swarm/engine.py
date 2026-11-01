@@ -3,7 +3,7 @@ strands_agents_swarm.engine
 
 Strands-compliant Agent Core Runtime Loop & Tool Dispatcher.
 Implements the ReAct (Perceive -> Reason -> Act / Tool Call) cycle,
-supporting Amazon Bedrock, Groq, and a local Deterministic Clinical Fallback
+supporting Amazon Bedrock and a local Deterministic Clinical Fallback
 for resilient edge computing in rural clinics.
 """
 

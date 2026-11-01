@@ -4,25 +4,39 @@ import { useAuth, LANGUAGES } from '../../../../shared/context/AuthContext';
 import { speakNativeAudio } from '../../../../shared/utils/speech';
 
 export const IvrCallSimulatorModal = ({ isOpen, onClose, reminderItem }) => {
-  const { currentLang, showToast } = useAuth();
+  const { user, currentLang, showToast } = useAuth();
   const [callActive, setCallActive] = useState(false);
   const [speaking, setSpeaking] = useState(false);
 
   if (!isOpen) return null;
 
-  const medName = reminderItem?.medication_name || reminderItem?.title || 'Paracetamol 500mg';
-  const instructions = reminderItem?.instructions || reminderItem?.dosage_note || '1 tablet after breakfast';
-  const time = reminderItem?.scheduled_time || '08:00 AM';
+  // Resolve dynamic patient name
+  const patientName =
+    reminderItem?.patient_name ||
+    user?.first_name ||
+    (user?.username ? user.username.charAt(0).toUpperCase() + user.username.slice(1) : '') ||
+    '';
+
+  // Dynamic medicine details from the clicked prescription reminder
+  const medName = reminderItem?.medication_name || reminderItem?.title || reminderItem?.name || 'Prescribed Medicine';
+  const instructions = reminderItem?.instructions || reminderItem?.dosage_note || reminderItem?.purpose || 'Take 1 dose as prescribed with water';
+  const time = reminderItem?.scheduled_time || reminderItem?.time || '08:00 AM';
 
   const handleAnswerCall = async () => {
     setCallActive(true);
     setSpeaking(true);
 
+    const greetingHi = patientName ? `नमस्ते ${patientName} जी!` : 'नमस्ते!';
+    const greetingEn = patientName ? `Hello ${patientName}!` : 'Hello!';
+    const greetingKn = patientName ? `ನಮಸ್ಕಾರ ${patientName} ಅವರೇ!` : 'ನಮಸ್ಕಾರ!';
+    const greetingTe = patientName ? `నమస్కారం ${patientName} గారు!` : 'నమస్కారం!';
+
     const callScript = {
-      hi: `नमस्ते रमेश जी! यह प्राथमिक स्वास्थ्य केंद्र से आपकी दवा का फोन है। ${medName} लेने का समय हो गया है। ${instructions}। ध्यान रखें और गर्म पानी पिएं।`,
-      kn: `ನಮಸ್ಕಾರ ರಮೇಶ್ ಅವರೇ! ಇದು ನಿಮ್ಮ ಔಷಧಿಯ ಕರೆ. ${medName} ತೆಗೆದುಕೊಳ್ಳುವ ಸಮಯವಾಗಿದೆ. ${instructions}.`,
-      en: `Namaste Ramesh Ji! Automated medication voice alert from Primary Health Center. Time to take ${medName}. Instructions: ${instructions}.`,
-    }[currentLang || 'hi'] || `Namaste! Time to take your medication ${medName}.`;
+      hi: `${greetingHi} यह प्राथमिक स्वास्थ्य केंद्र से आपकी दवा का स्वचालित फोन है। ${medName} लेने का समय हो गया है। निर्देश: ${instructions}। ध्यान रखें और समय पर दवा लें।`,
+      te: `${greetingTe} ఇది ప్రాథమిక ఆరోగ్య కేంద్రం నుండి మీ ఔషధ రిమైండర్ కాల్. ${medName} తీసుకునే సమయం ఆసన్నమైంది. సూచనలు: ${instructions}.`,
+      kn: `${greetingKn} ಇದು ಪ್ರಾಥಮಿಕ ಆರೋಗ್ಯ ಕೇಂದ್ರದಿಂದ ನಿಮ್ಮ ಔಷಧಿಯ ಕರೆ. ${medName} ತೆಗೆದುಕೊಳ್ಳುವ ಸಮಯವಾಗಿದೆ. ${instructions}.`,
+      en: `${greetingEn} Automated medication voice alert from the Primary Health Center. It is time to take ${medName}. Instructions: ${instructions}. Stay healthy!`,
+    }[currentLang || 'hi'] || `${greetingEn} Automated medication voice alert. Time to take ${medName}. Instructions: ${instructions}.`;
 
     if (showToast) showToast('Connecting IVR Automated Voice Call...', 'info');
     await speakNativeAudio(callScript, currentLang || 'hi');

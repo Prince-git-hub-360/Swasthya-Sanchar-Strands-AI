@@ -52,6 +52,22 @@ flowchart TD
 
 ---
 
+---
+
+## 🗺️ AWS Strands Workshop Alignment Map
+
+This project directly operationalizes the multi-agent architecture patterns taught in the official AWS Workshop (*Building AI Agents with Strands SDK: From Simple Loops to Multi-Agent Swarms*):
+
+| Workshop Module | Core Concept Taught | Implementation in Swasthya Sanchar AI |
+| :--- | :--- | :--- |
+| **Module 1: Agent Core Loop & Tools** | `@tool` decorator, ReAct perception-reasoning loop, execution metrics | [`strands_agents_swarm/engine.py`](strands_agents_swarm/engine.py): `StrandsBaseAgent` runtime loop, `@strands_tool` schema registration, step tracing & metrics |
+| **Module 2: Hooks & Safety Gates** | Boundary Hooks, Cancellation gates, Pre/Post-execution interceptors | [`rx_safety_sentinel.py`](strands_agents_swarm/agents/rx_safety_sentinel.py): Pharmacovigilance safety gates, dosage threshold caps, and duplicate salt overdose interceptors |
+| **Module 3: Steering & Guidance** | Steering Handlers, Guidance prompts, Proceed/Guide decisions | [`rx_vernacular_communicator.py`](strands_agents_swarm/agents/rx_vernacular_communicator.py): Dynamic vernacular steering across 12+ Indic languages (colloquial guidance without medical jargon) |
+| **Module 4: Session & State** | Session Managers, Shared memory state across conversation turns | [`swarm_types.py`](strands_agents_swarm/swarm_types.py): Shared state dataclasses (`PharmacologyRegimen`, `SwarmExecutionReport`, `VisionExtractionResult`) |
+| **Module 5: Runtime Deployment** | Bedrock Runtime, AgentCore entrypoints & local/cloud invocation | Configured for AWS Bedrock (`bedrock/anthropic.claude-3-haiku` / `amazon.nova-lite`) with resilient edge clinical fallback & Django REST API Bridge |
+| **Module 6: Multi-Agent Swarm** | Specialist Agent Pattern (Composed specialized agents) | **4-Agent Collaborative Swarm:** `RxVisionAgent` ➔ `RxPharmacologyAgent` ➔ `RxSafetySentinel` (Critic) ➔ `RxVernacularCommunicator` |
+| **Module 7: Trajectory & Evals** | Trajectory verification, Evaluators & End-to-end evaluation | [`demo_swarm_runner.py`](strands_agents_swarm/demo_swarm_runner.py): Dual-scenario evaluation suite testing PHC prescription processing & acute emergency SOS escalation |
+
 ## 📊 Measurable Improvements for Underserved Populations
 
 | Metric | Baseline in Rural Underserved Communities | With Swasthya Sanchar AI Swarm |
